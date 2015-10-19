@@ -1,0 +1,5 @@
+[user]
+	name = PastaMasta
+	email = pasta.masta2902@gmail.com
+[core]
+	excludesfile = /root/.gitignore
