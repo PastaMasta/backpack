@@ -7,13 +7,9 @@ configs=`ls -A ${DIR} | grep -vE ".git$|setup.sh"`
 
 for config in ${configs} ; do
 
-  if [[ -f ~/${config} ]] ; then
-    echo "Backing up ~/${config} to ~/${config}.old"
-    mv ~/${config} ~/${config}.old
+  if ln -s ${DIR}/${config} ~/${config} ; then
+    echo "Linked ${DIR}/${config} to ~/${config}"
   fi
-
-  echo "Linking ${DIR}/${config} to ~/${config}"
-  ln -fs ${DIR}/${config} ~/${config}
 
 done
 
