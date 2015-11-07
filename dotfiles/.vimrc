@@ -1,1 +1,3 @@
+"" .vimrc
+
 set background=dark
