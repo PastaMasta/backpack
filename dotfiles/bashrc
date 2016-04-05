@@ -10,9 +10,12 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mounted='mount | column -t'
+
+# Gitconfigs
 alias s='git status'
-alias b='git branch -a'
+alias b='git branch -av'
 alias d='git diff'
+alias r='git remote -v'
 
 # misc
 set -o vi
