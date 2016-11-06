@@ -1,9 +1,9 @@
 #! /bin/bash
 
-# Setup symlinks in ~/ for dotfiles
+basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/dotfiles"
-dotfiles=`ls ${basedir} | grep -vE ".git$|setup.sh"`
+# Setup symlinks in ~/ for dotfiles
+dotfiles=`ls ${basedir}/dotfiles`
 
 for dotfile in ${dotfiles} ; do
 
@@ -17,7 +17,13 @@ done
 
 # Setup config
 if ln -s ${basedir}/config ~/.config ; then
-    echo "Linked ${DIR}/config to ~/.config"
+    echo "Linked ${basedir}/config to ~/.config"
+fi
+
+# SSH config for github etc
+[[ ! -d ~/.ssh ]] && mkdir -p ~/.ssh
+if ln -s ${basedir}/ssh/config ~/.ssh/config; then
+    echo "Linked ${basedir}/config to ~/.config"
 fi
 
 exit $?
