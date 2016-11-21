@@ -54,3 +54,8 @@ for dotdir in ${dotdirs} ; do
   fi
 
 done
+
+#
+# Misc
+#
+chmod 600 ~/.ssh/config
