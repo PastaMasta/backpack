@@ -1,29 +1,56 @@
 #! /bin/bash
 
+# 
+# Sets up symlinks my custom configs, dot files and other items
+#
+
+# Checks and validates links
+function link {
+  source=$1
+  target=$2
+
+  if [[ -L ${target} ]] ; then
+
+    if [[ ! $(readlink ${target}) == ${source} ]] ; then
+      echo "${target} is linked to $(readlink ${target}) !"
+    fi
+
+  elif [[ -f ${target} || -d ${target} ]] ; then
+    echo "${target} already exists!"
+  else
+    ln -s ${source} ${target}
+  fi
+}
+
 basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Setup symlinks in ~/ for dotfiles
-dotfiles=`ls ${basedir}/dotfiles`
+#
+# Setup symlinks in ~/ for dotfiles (.bashrc etc)
+#
+dotfile_dir="${basedir}/home/dotfiles"
+dotfiles=`ls ${dotfile_dir}`
 
 for dotfile in ${dotfiles} ; do
+  file="${dotfile_dir}/${dotfile}"
+  link ${file} ~/.${dotfile}
+done
 
-  file="${basedir}/${dotfile}"
+#
+# Setup dotdirs (~/.ssh etc)
+#
+dotdir_dir="${basedir}/home/dotdirs"
+dotdirs=`ls ${dotdir_dir}`
 
-  if ln -s ${file} ~/.${dotfile} ; then
-    echo "Linked ${file} to ~/${dotfile}"
+for dotdir in ${dotdirs} ; do
+  dir="${dotdir_dir}/${dotdir}"
+
+  # Just link if it's not there, merge if the dir is.
+  if [[ ! -d ~/.${dotdir} ]] ; then
+    link ${dir} ~/.${dotdir}
+  else
+    for dotdirfile in `ls ${dir}` ; do
+      link ${dir}/${dotdirfile} ~/.${dotdir}/${dotdirfile}
+    done
   fi
 
 done
-
-# Setup config
-if ln -s ${basedir}/config ~/.config ; then
-    echo "Linked ${basedir}/config to ~/.config"
-fi
-
-# SSH config for github etc
-[[ ! -d ~/.ssh ]] && mkdir -p ~/.ssh
-if ln -s ${basedir}/ssh/config ~/.ssh/config; then
-    echo "Linked ${basedir}/config to ~/.config"
-fi
-
-exit $?
