@@ -16,6 +16,7 @@ alias s='git status'
 alias b='git branch -av'
 alias d='git diff'
 alias r='git remote -v'
+alias l='git log --oneline'
 
 # misc
 set -o vi
