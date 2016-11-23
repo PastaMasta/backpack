@@ -5,9 +5,9 @@
 # specified in a configuration file.
 #
 # Default config file:
-config_file='~/.config/borg/backup.conf'
+config_file="${HOME}/.config/borg/backup.conf"
 
-#[[ $# -gt 0 ]] && config_file=$1
+[[ $# -gt 0 ]] && config_file=$1
 
 function usage {
   echo "Usage:"
@@ -15,8 +15,7 @@ function usage {
   exit 1
 }
 
-echo "Config file is - ${config_file}"
-if [[ ! -r ${config_file} ]] ; then
+if [[ -r "${config_file}" ]] ; then
   . ${config_file}
 else
   echo "Couldn't read ${config_file} !"
@@ -24,5 +23,5 @@ else
 fi
 
 
-borg create -C none ${REPOSITORY}::'{hostname}-{now:%Y-%m-%d_%H:%M:%S}' ${DIRS} 
+borg create -C none ${REPOSITORY}::'{hostname}-{now:%Y-%m-%d_%H:%M:%S}' ${TARGETS} 
 # borg prune -v ${REPOSITORY} --prefix '{hostname}-' --keep-within=7d --keep-weekly=4 --keep-monthly=6
