@@ -59,3 +59,4 @@ done
 # Misc
 #
 chmod 600 ~/.ssh/config
+[[ -f ${HOME}/.borg-backups.conf ]] || cp ${basedir}/home/misc/borg-template.conf ${HOME}/.borg-backups.conf

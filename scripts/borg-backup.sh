@@ -5,7 +5,7 @@
 # specified in a configuration file.
 #
 # Default config file:
-config_file="${HOME}/.config/borg/backup.conf"
+config_file="${HOME}/.borg-backups.conf"
 
 [[ $# -gt 0 ]] && config_file=$1
 
