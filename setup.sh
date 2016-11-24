@@ -32,7 +32,7 @@ dotfiles=`ls ${dotfile_dir}`
 
 for dotfile in ${dotfiles} ; do
   file="${dotfile_dir}/${dotfile}"
-  link ${file} ~/.${dotfile}
+  link ${file} ${HOME}/.${dotfile}
 done
 
 #
@@ -45,11 +45,11 @@ for dotdir in ${dotdirs} ; do
   dir="${dotdir_dir}/${dotdir}"
 
   # Just link if it's not there, merge if the dir is.
-  if [[ ! -d ~/.${dotdir} ]] ; then
-    link ${dir} ~/.${dotdir}
+  if [[ ! -d ${HOME}/.${dotdir} ]] ; then
+    link ${dir} ${HOME}/.${dotdir}
   else
     for dotdirfile in `ls ${dir}` ; do
-      link ${dir}/${dotdirfile} ~/.${dotdir}/${dotdirfile}
+      link ${dir}/${dotdirfile} ${HOME}/.${dotdir}/${dotdirfile}
     done
   fi
 
@@ -58,5 +58,5 @@ done
 #
 # Misc
 #
-chmod 600 ~/.ssh/config
+chmod 600 ${HOME}/.ssh/config
 [[ -f ${HOME}/.borg-backups.conf ]] || cp ${basedir}/home/misc/borg-template.conf ${HOME}/.borg-backups.conf
