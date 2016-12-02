@@ -17,6 +17,7 @@ alias b='git branch -av'
 alias d='git diff'
 alias r='git remote -v'
 alias l='git log --oneline'
+alias t='git tag | sort -V'
 
 # misc
 set -o vi
