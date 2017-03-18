@@ -60,7 +60,7 @@ done
 #
 [[ -d ${HOME}/bin ]] || mkdir ${HOME}/bin
 for scriptfile in `ls ${basedir}/scripts/*.sh` ; do
-  link ${basedir}/scripts/${scriptfile} ${HOME}/bin/${scriptfile}
+  link ${scriptfile} ${HOME}/bin/`basename ${scriptfile}`
 done
 
 #
