@@ -56,6 +56,14 @@ for dotdir in ${dotdirs} ; do
 done
 
 #
+# Link scripts
+#
+[[ -d ${HOME}/bin ]] || mkdir ${HOME}/bin
+for scriptfile in `ls ${basedir}/scripts/*.sh` ; do
+  link ${basedir}/scripts/${scriptfile} ${HOME}/bin/${scriptfile}
+done
+
+#
 # Misc
 #
 chmod 600 ${HOME}/.ssh/config
