@@ -12,7 +12,7 @@ alias mv='mv -i'
 alias mounted='mount | column -t'
 
 # Gitconfigs
-alias s='git status'
+alias s='git status ; git stash list'
 alias b='git branch -av'
 alias d='git diff'
 alias r='git remote -v'
