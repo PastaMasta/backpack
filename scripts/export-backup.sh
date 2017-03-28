@@ -6,17 +6,26 @@
 #
 
 config_file="${HOME}/.borg-backups.conf"
+lock_timeout=15 # seconds
+
+function usage {
+  echo "Could not read config file or find variables!"
+  echo "Please check if ${config_file} exists with repos_to_backup and export_target exported
+  repos_to_backup - list of paths to borg repos
+  export_target - dir to export backups to"
+  exit 1
+}
 
 if [[ -r "${config_file}" ]] ; then
   . ${config_file}
 else
   echo "Couldn't read ${config_file} !"
+  usage
 fi
 
-[[ -z ${repos_to_backup} ]] && exit 1
-[[ -z ${export_target} ]] && exit 1
+[[ -z ${repos_to_backup} ]] && usage
+[[ -z ${export_target} ]] && usage
 
-lock_timeout=15 # seconds
 ###############################
 
 function lock_repo {
