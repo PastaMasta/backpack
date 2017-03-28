@@ -59,7 +59,10 @@ for repo in ${repos_to_backup} ; do
 
     timeout=0
     while true ; do
-      [[ ${timeout} -ge ${lock_timeout} ]] && exit 1
+      if [[ ${timeout} -ge ${lock_timeout} ]] ; then
+        echo "Timed out waiting for lock (${lock_timeout}s)"
+        exit 1
+      fi
       check_if_locked ${repo} && break
       timeout=`expr ${timeout} + 1`
       sleep 1
