@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+export PATH=~/bin/:${PATH}
+
 # Aliases
 alias rm='rm -i'
 alias cp='cp -i'
