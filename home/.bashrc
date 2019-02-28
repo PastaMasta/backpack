@@ -5,22 +5,27 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+set -o vi
+
 export PATH=~/bin/:${PATH}
+export PS1='[\u@\h]\$ '
 
 # Aliases
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias mounted='mount | column -t'
+alias ls='ls -A --color=auto'
+alias whence='type -p'
 
 # Gitconfigs
 alias s='git status ; git stash list'
 alias b='git branch -av'
 alias d='git diff'
+alias dc='git diff --cached'
 alias r='git remote -v'
 alias l='tig'
 alias t='git tag | sort -V'
 
-# misc
-set -o vi
-export PS1='[\u@\h]\$ '
+# Typos
+alias gerp='grep'
+alias sl='ls'
