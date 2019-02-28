@@ -1,4 +1,5 @@
 #! /bin/bash
+[[ $DEBUG ]] && set -x
 
 # 
 # Sets up symlinks my custom configs, dot files and other items
@@ -6,66 +7,45 @@
 
 # Checks and validates links
 function link {
-  source=$1
-  target=$2
+  typeset source=$1
+  typeset target=$2
 
-  if [[ -L ${target} ]] ; then
-
-    if [[ ! $(readlink ${target}) == ${source} ]] ; then
+  if [[ ! -e ${target} ]] ; then
+    ln -s ${source} ${target}
+  elif [[ -L ${target} ]] ; then
+    if [[ $(readlink ${target}) == ${source} ]] ; then
+      [[ $DEBUG ]] && echo "${target} is already linked to $(readlink ${target}) !"
+    else
       echo "${target} is linked to $(readlink ${target}) !"
     fi
-
-  elif [[ -f ${target} || -d ${target} ]] ; then
-    echo "${target} already exists!"
   else
-    ln -s ${source} ${target}
+    echo "${target} already exists!"
   fi
 }
 
-basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Recursive function to Find files in source dir and symlink to target
+function findandlink {
+  typeset source=$1
+  typeset target=$2
+  typeset files=`find ${source} -mindepth 1 -maxdepth 1`
 
-#
-# Setup symlinks in ~/ for dotfiles (.bashrc etc)
-#
-dotfile_dir="${basedir}/home/dotfiles"
-dotfiles=`ls ${dotfile_dir}`
+  for file in ${files} ; do
+    filebase=`basename ${file}`
+    if [[ -d ${file} ]] ; then
+      mkdir -p ${target}/${filebase}
+      findandlink ${file} ${target}/${filebase}
+    else
+      link ${file} ${target}/${filebase}
+    fi
+  done
+}
 
-for dotfile in ${dotfiles} ; do
-  file="${dotfile_dir}/${dotfile}"
-  link ${file} ${HOME}/.${dotfile}
-done
+# main
 
-#
-# Setup dotdirs (~/.ssh etc)
-#
-dotdir_dir="${basedir}/home/dotdirs"
-dotdirs=`ls ${dotdir_dir}`
+# full path to the repo so symlinks aren't relative
+repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+repohome="${repodir}/home"
 
-for dotdir in ${dotdirs} ; do
-  dir="${dotdir_dir}/${dotdir}"
+findandlink ${repohome} ${HOME}
 
-  # Just link if it's not there, merge if the dir is.
-  if [[ ! -d ${HOME}/.${dotdir} ]] ; then
-    link ${dir} ${HOME}/.${dotdir}
-  else
-    for dotdirfile in `ls ${dir}` ; do
-      link ${dir}/${dotdirfile} ${HOME}/.${dotdir}/${dotdirfile}
-    done
-  fi
-
-done
-
-#
-# Link scripts
-#
-[[ -d ${HOME}/bin ]] || mkdir ${HOME}/bin
-for scriptfile in `ls ${basedir}/scripts/*.sh` ; do
-  link ${scriptfile} ${HOME}/bin/`basename ${scriptfile}`
-done
-
-#
-# Misc
-#
-chmod 600 ${HOME}/.ssh/config
-[[ -f ${HOME}/.borg-backups.conf ]] || cp ${basedir}/home/misc/borg-template.conf ${HOME}/.borg-backups.conf
-chmod 400 ${HOME}/.borg-backups.conf
+exit $?
