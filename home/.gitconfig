@@ -13,3 +13,6 @@
   interactive = auto
   ui = true
   pager = true
+
+[credential]
+    helper = store
