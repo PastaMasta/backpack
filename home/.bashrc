@@ -23,8 +23,14 @@ alias b='git branch -av'
 alias d='git diff'
 alias dc='git diff --cached'
 alias r='git remote -v'
-alias l='tig'
 alias t='git tag | sort -V'
+function l {
+  if [[ -x tig ]] ; then
+    tig $*
+  else
+    git log --graph --decorate --oneline $*
+  fi
+}
 
 # Typos
 alias gerp='grep'
