@@ -28,7 +28,7 @@ function l {
   if [[ -x tig ]] ; then
     tig $*
   else
-    git log --graph --decorate --oneline $*
+    git log --graph --all --full-history --color --oneline $*
   fi
 }
 
