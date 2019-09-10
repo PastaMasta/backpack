@@ -35,3 +35,10 @@ function l {
 # Typos
 alias gerp='grep'
 alias sl='ls'
+# These don't seem to work as alias?
+function ls- {
+  ls -$*
+}
+function sl- {
+  ls -$*
+}
