@@ -25,7 +25,7 @@ alias dc='git diff --cached'
 alias r='git remote -v'
 alias t='git tag | sort -V'
 function l {
-  if [[ -x tig ]] ; then
+  if [[ -x `type -p tig` ]] ; then
     tig $*
   else
     git log --graph --all --full-history --color --oneline $*
