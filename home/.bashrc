@@ -8,7 +8,7 @@ fi
 set -o vi
 
 export PATH=~/bin/:~/.local/bin/:${PATH}
-export PS1='[\u@\h]\$ '
+export PS1='[\u@\h:$?]\$ '
 
 # Aliases
 alias rm='rm -i'
