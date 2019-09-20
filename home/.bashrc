@@ -31,6 +31,7 @@ function l {
     git log --graph --all --full-history --color --oneline $*
   fi
 }
+alias lo='git log --oneline'
 
 # Typos
 alias gerp='grep'
