@@ -7,7 +7,7 @@ fi
 
 set -o vi
 
-export PATH=~/bin/:~/.local/bin/:${PATH}
+export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
 export PS1='[\u@\h:$?]\$ '
 
 # Aliases
