@@ -16,3 +16,6 @@
 
 [credential]
     helper = store
+
+[alias]
+	kermit = commit
