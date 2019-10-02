@@ -36,6 +36,7 @@ alias lo='git log --oneline'
 # Typos
 alias gerp='grep'
 alias sl='ls'
+alias vm='mv'
 # These don't seem to work as alias?
 function ls- {
   ls -$*
