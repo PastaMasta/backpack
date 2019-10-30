@@ -10,6 +10,8 @@ set -o vi
 export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
 export PS1='[\u@\h:$?]\$ '
 
+export EDITOR="vim"
+
 # Aliases
 alias rm='rm -i'
 alias cp='cp -i'
