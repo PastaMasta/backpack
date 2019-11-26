@@ -7,7 +7,6 @@ fi
 
 # Shell settings
 set -o vi
-set -u
 set +H
 
 export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
