@@ -5,7 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Shell settings
 set -o vi
+set -u
+set +H
 
 export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
 export PS1='[\u@\h:$?]\$ '
