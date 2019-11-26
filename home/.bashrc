@@ -21,6 +21,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -A --color=auto'
 alias whence='type -p'
+alias v='vim'
 
 # Gitconfigs
 alias s='git status ; git stash list'
