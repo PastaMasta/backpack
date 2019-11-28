@@ -58,6 +58,8 @@ function mounted {
   if [[ $# -ge 1 ]] ; then
     /bin/mount $*
   else
-    /bin/mount 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' | sort -k 2 -r | column -t --table-columns Device,Mountpoint,Type,Options
+    printf "====== ========== ==== =======\n` \
+    /bin/mount 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' | sort -k 2 -r \
+    `" | column -t --table-columns Device,Mountpoint,Type,Options
   fi
 }
