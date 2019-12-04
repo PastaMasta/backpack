@@ -48,4 +48,6 @@ repohome="${repodir}/home"
 
 findandlink ${repohome} ${HOME}
 
+[[ ! -d ~/bin ]] && mkdir ~/bin
+
 exit $?
