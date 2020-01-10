@@ -22,6 +22,9 @@ alias ls='ls -A --color=auto'
 alias whence='type -p'
 alias v='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
+function basepwd {
+  basename `pwd`
+}
 
 # Dir shortcuts
 alias backpack='cd ~/backpack'
