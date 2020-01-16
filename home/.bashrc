@@ -14,7 +14,9 @@ export PS1='[\u@\h:$?]\$ '
 
 export EDITOR="vim"
 
+#-----------------------------------------------------------------------------+
 # Aliases
+#-----------------------------------------------------------------------------+
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -26,12 +28,16 @@ function basepwd {
   basename `pwd`
 }
 
+#
 # Dir shortcuts
+#
 alias backpack='cd ~/backpack'
 alias notes='cd ~/notes'
 alias scripts='cd ~/scripts'
 
-# Gitconfigs
+#
+# Git stuff
+#
 alias s='git status ; git stash list'
 alias b='git branch -av'
 alias d='git diff'
@@ -47,7 +53,9 @@ function l {
 }
 alias lo='git log --oneline'
 
+#
 # Typos
+#
 alias gerp='grep'
 alias sl='ls'
 alias vm='mv'
@@ -59,7 +67,11 @@ function sl- {
   ls -$*
 }
 
-# AIX like pretty mount
+#-----------------------------------------------------------------------------+
+# Functions
+#-----------------------------------------------------------------------------+
+
+# AIX like pretty mount, because /bin/mount is pretty much unreadable
 function mounted {
   if [[ $# -ge 1 ]] ; then
     /bin/mount $*
