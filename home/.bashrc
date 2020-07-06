@@ -26,6 +26,7 @@ alias view='vim -R' # /bin/view doesn't have syntax
 function basepwd {
   basename `pwd`
 }
+alias c='clear'
 
 #
 # Dir shortcuts
