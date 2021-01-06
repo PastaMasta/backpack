@@ -17,9 +17,11 @@ function link {
       [[ $DEBUG ]] && echo "${target} is already linked to $(readlink ${target}) !"
     else
       echo "${target} is linked to $(readlink ${target}) !"
+      ln -s ${source} ${target} -f -i
     fi
   else
     echo "${target} already exists!"
+    ln -s ${source} ${target} -f -i
   fi
 }
 
