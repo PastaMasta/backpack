@@ -1,5 +1,7 @@
 # .bashrc
 
+[[ ${DEBUG} ]] && set -x
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
   source /etc/bashrc
@@ -16,7 +18,6 @@ export EDITOR="vim"
 # Import all other bits
 for i in ~/.bashbag/* ; do
   source $i
-  echo "Sourced $i"
 done
 
 #------------------------------------------------------------------------------+
