@@ -90,3 +90,7 @@ function noproxy {
   export https_proxy=""
   export no_proxy=""
 }
+
+function vimtype {
+  vim `type -p $1`
+}
