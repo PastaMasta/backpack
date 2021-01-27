@@ -29,6 +29,7 @@ alias mv='mv -i'
 alias ls='ls -A --color=auto'
 alias whence='type -p'
 alias v='vim'
+alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
 function basepwd {
   basename `pwd`
