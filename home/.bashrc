@@ -26,7 +26,7 @@ done
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias ls='ls -A --color=auto'
+alias ls='ls -A --color=auto -h'
 alias whence='type -p'
 alias v='vim'
 alias vi='vim'
