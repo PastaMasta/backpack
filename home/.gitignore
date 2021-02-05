@@ -2,5 +2,5 @@
 *.tar
 *.swp
 Gemfile.lock
-.aws/*
+.aws/credentials
 __pycache__
