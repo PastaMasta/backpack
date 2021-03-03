@@ -93,5 +93,9 @@ function noproxy {
 }
 
 function vimtype {
-  vim `type -p $1`
+  vim $(type -p $*)
+}
+
+function rpmtype {
+  rpm -qf $(type -p $*)
 }
