@@ -31,9 +31,9 @@ alias c='clear'
 #
 # Dir shortcuts
 #
-alias backpack='cd ~/backpack ; tw.'
-alias notes='cd ~/notes ; tw.'
-alias scripts='cd ~/scripts ; tw.'
+alias backpack='cd ~/backpack ; tw'
+alias notes='cd ~/notes ; tw'
+alias scripts='cd ~/scripts ; tw'
 
 #
 # Git stuff
@@ -72,8 +72,12 @@ function sl- {
 #------------------------------------------------------------------------------+
 
 # Renames a tmux window to current dir name
-function tw. {
-  tmux rename-window `basepwd`
+function tw {
+  if [[ -n $1 ]] ; then
+    tmux rename-window $1
+  else
+    tmux rename-window `basepwd`
+  fi
 }
 
 # AIX like pretty mount, because /bin/mount is pretty much unreadable
