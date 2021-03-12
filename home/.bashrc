@@ -91,3 +91,13 @@ function mounted {
     `" | column -t --table-columns 'Device,Mountpoint,vfs,Options'
   fi
 }
+
+function cdmkdir {
+  mkdir -p $1 ; cd $1
+}
+
+function noproxy {
+  export http_proxy=""
+  export https_proxy=""
+  export no_proxy=""
+}
