@@ -1,10 +1,11 @@
 # .gitconfig
 
 [user]
-	name = PastaMasta
-	email = pasta.masta2902@gmail.com
+  name = PastaMasta
+  email = pasta.masta2902@gmail.com
+
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 
 [color]
   diff = auto
@@ -15,7 +16,7 @@
   pager = true
 
 [credential]
-    helper = store
+  helper = cache
 
 [alias]
-	kermit = commit
+  kermit = commit
