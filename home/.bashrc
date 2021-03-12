@@ -22,6 +22,9 @@ alias ls='ls -A --color=auto'
 alias whence='type -p'
 alias v='vim'
 
+# Dir shortcuts
+alias backpack='cd ~/backpack'
+
 # Gitconfigs
 alias s='git status ; git stash list'
 alias b='git branch -av'
