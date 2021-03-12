@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  source /etc/bashrc
 fi
 
 # Shell settings
@@ -12,6 +12,12 @@ set +H
 export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
 export PS1='[\u@\h:$?]\$ ' # [user@host:exitcode]$
 export EDITOR="vim"
+
+# Import all other bits
+for i in ~/.bashbag/* ; do
+  source $i
+  echo "Sourced $i"
+done
 
 #------------------------------------------------------------------------------+
 # Aliases
@@ -35,24 +41,6 @@ alias c='clear'
 alias backpack='cd ~/backpack ; tw'
 alias notes='cd ~/notes ; tw'
 alias scripts='cd ~/scripts ; tw'
-
-#
-# Git stuff
-#
-alias s='git status ; git stash list'
-alias b='git branch -av'
-alias d='git diff'
-alias dc='git diff --cached'
-alias r='git remote -v'
-alias t='git tag | sort -V'
-function l {
-  if [[ -x `type -p tig` ]] ; then
-    tig $*
-  else
-    git log --graph --all --full-history --color --oneline $*
-  fi
-}
-alias lo='git log --oneline'
 
 #
 # Typos
