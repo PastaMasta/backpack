@@ -21,9 +21,12 @@ alias mv='mv -i'
 alias ls='ls -A --color=auto'
 alias whence='type -p'
 alias v='vim'
+alias view='vim -R' # /bin/view doesn't have syntax
 
 # Dir shortcuts
 alias backpack='cd ~/backpack'
+alias notes='cd ~/notes'
+alias scripts='cd ~/scripts'
 
 # Gitconfigs
 alias s='git status ; git stash list'
