@@ -10,8 +10,7 @@ set -o vi
 set +H
 
 export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
-export PS1='[\u@\h:$?]\$ '
-
+export PS1='[\u@\h:$?]\$ ' # [user@host:exitcode]$
 export EDITOR="vim"
 
 #-----------------------------------------------------------------------------+
