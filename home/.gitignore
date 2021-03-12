@@ -4,3 +4,4 @@
 Gemfile.lock
 .aws/credentials
 __pycache__
+Policyfile.lock.json
