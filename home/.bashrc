@@ -87,12 +87,7 @@ function cdmkdir {
 }
 
 function noproxy {
-  export http_proxy=""
-  export https_proxy=""
-  export no_proxy=""
-  export HTTP_PROXY=""
-  export HTTPS_PROXY=""
-  export NO_PROXY=""
+  unset http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
 }
 
 function vimtype {
