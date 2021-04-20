@@ -40,6 +40,8 @@ alias c='clear'
 #
 # Dir shortcuts
 #
+alias downloads='cd ~/downloads ; tw'
+alias Downloads=downloads
 alias backpack='cd ~/backpack ; tw'
 alias notes='cd ~/notes ; tw'
 alias scripts='cd ~/scripts ; tw'
