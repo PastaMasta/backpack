@@ -49,6 +49,7 @@ alias scripts='cd ~/scripts ; tw'
 #
 # Typos
 #
+alias it='git'
 alias gerp='grep'
 alias sl='ls'
 alias vm='mv'
