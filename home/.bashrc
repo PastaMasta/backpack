@@ -107,3 +107,9 @@ function rpmtype {
   rpm -qf $(type -p $*)
 }
 complete -c rpmtype
+
+# finds any TODO: tags in files
+function todo {
+  File=${1:-*} # Defaults to all files
+  grep -R -o -n -E "TODO:.*"  ${File} | awk -F: '{print "vim",$1,"+"$2,"#",substr($0, index($0,$3))}'
+}
