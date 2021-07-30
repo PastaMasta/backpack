@@ -5,3 +5,9 @@ function ec2-get-private-ip {
     --filters "Name=tag:Name,Values=$1" "Name=instance-state-name,Values=running" \
     --query "Reservations[*].Instances[*].{Instance:PrivateIpAddress}" --output text
 }
+
+function ssmget {
+  for i in $* ; do
+    aws ssm get-parameter --name $i | jq -r .Parameter.Value
+  done
+}
