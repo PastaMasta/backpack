@@ -11,3 +11,9 @@ function ssmget {
     aws ssm get-parameter --name $i | jq -r .Parameter.Value
   done
 }
+
+function smget {
+  for i in $* ; do
+    aws secretsmanager get-secret-value --secret-id $i | jq -r .SecretString
+  done
+}
