@@ -1,1 +1,6 @@
 alias powershell=powershell.exe
+
+# Clipboard on WSL
+if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+  alias clip="sed -z '$ s/\n$//' | clip.exe"
+fi
