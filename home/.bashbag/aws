@@ -1,5 +1,6 @@
 # .bashrc AWS functions
 
+# Finds the private IP of an ec2
 function ec2-get-private-ip {
   for i in $* ; do
     aws ec2 describe-instances \
@@ -8,12 +9,14 @@ function ec2-get-private-ip {
   done
 }
 
+# Gets a SSM param string to STDOUT
 function ssmget {
   for i in $* ; do
     aws ssm get-parameter --name $i | jq -r .Parameter.Value
   done
 }
 
+# Gets a secretsmanager secret string to STDOUT
 function smget {
   for i in $* ; do
     aws secretsmanager get-secret-value --secret-id $i | jq -r .SecretString
