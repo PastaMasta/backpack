@@ -7,7 +7,11 @@ set mouse=a
 set belloff=all
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 set updatetime=100
-source ~/.vimrc_local
+
+""" Local version if it's there
+if filereadable("~/.vimrc_local")
+  source ~/.vimrc_local
+endif
 
 """ Catch trailing whitespace:
 highlight ExtraWhitespace ctermbg=red guibg=red
