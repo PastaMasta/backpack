@@ -1,7 +1,7 @@
 #! /bin/bash
 [[ $DEBUG ]] && set -x
 
-# 
+#
 # Sets up symlinks my custom configs, dot files and other items
 #
 
