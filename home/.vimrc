@@ -28,8 +28,12 @@ endif
 """ vim-plug plugins:
 call plug#begin()
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
+
+""" Airline config
+let g:airline_theme='deus'
 
 """ Tab completion
 function! Smart_TabComplete()
