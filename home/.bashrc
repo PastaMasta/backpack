@@ -80,7 +80,7 @@ function mounted {
     /bin/mount $*
   else
     echo -e "------ ---------- --- -------\n` \
-    /bin/mount 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' | sort -k 2 -r \
+    /bin/mount 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' \
     `" | column -t --table-columns 'Device,Mountpoint,vfs,Options'
   fi
 }
