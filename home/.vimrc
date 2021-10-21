@@ -7,6 +7,7 @@ set mouse=a
 set belloff=all
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 set updatetime=100
+set hlsearch
 
 """ Local version if it's there
 if filereadable("~/.vimrc_local")
