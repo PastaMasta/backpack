@@ -1,5 +1,5 @@
 #! /bin/bash
-[[ $DEBUG ]] && set -x
+[[ $DEBUG -gt 1 ]] && set -x
 
 #
 # Sets up symlinks my custom configs, dot files and other items
@@ -10,16 +10,20 @@ function link {
   typeset source=$1
   typeset target=$2
 
-  if [[ ! -e ${target} ]] ; then
+  if [[ ! -e ${target} ]] ; then # Target doesn't exist
     ln -s ${source} ${target}
-  elif [[ -L ${target} ]] ; then
-    if [[ $(readlink ${target}) == ${source} ]] ; then
-      [[ $DEBUG ]] && echo "${target} is already linked to $(readlink ${target}) !"
-    else
-      echo "${target} is linked to $(readlink ${target}) !"
+  elif [[ -L ${target} ]] ; then # Check where the link goes
+
+    if [[ $(readlink ${target}) == ${source} ]] ; then # nothing to do
+      [[ $DEBUG ]] && echo "${target} is already linked to: $(readlink ${target})"
+    elif readlink ${target} | grep -q backpack-local ; then # Linked to local copy
+      echo "${target} is already linked to local version: $(readlink ${target})"
+    else # Linked elsewhere
+      echo "${target} is linked to $(readlink ${target})"
       ln -s ${source} ${target} -f -i
     fi
-  else
+
+  else # If it's already there but not a link
     echo "${target} already exists!"
     ln -s ${source} ${target} -f -i
   fi
