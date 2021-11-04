@@ -9,6 +9,9 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:�
 set updatetime=100
 set hlsearch
 
+""" Number highlighting
+highlight LineNr ctermfg=0 ctermbg=green
+
 """ Local version if it's there
 if filereadable("~/.vimrc_local")
   source ~/.vimrc_local
