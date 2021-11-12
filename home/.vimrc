@@ -9,6 +9,10 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:�
 set updatetime=100
 set hlsearch
 
+""" Folding
+" set foldmethod=syntax
+" set foldlevel=1
+
 """ Number highlighting
 highlight LineNr ctermfg=0 ctermbg=green
 
