@@ -37,6 +37,7 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 """ Airline config
