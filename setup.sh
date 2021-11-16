@@ -1,8 +1,8 @@
 #! /bin/bash
-[[ $DEBUG -gt 1 ]] && set -x
+[[ $DEBUG ]] && set -x
 
 #
-# Sets up symlinks my custom configs, dot files and other items
+# Sets up symlinks for my custom configs, dot files and other items
 #
 
 # Checks and validates links
@@ -46,14 +46,35 @@ function findandlink {
   done
 }
 
+# Takes a list of RPMS and retuns a list of those not installed
+function rpmcheck {
+  typeset rpms=""
+  for rpm in $* ; do
+    rpm -q $rpm > /dev/null || rpms="${rpms} ${rpm}"
+  done
+  echo ${rpms}
+}
+
 # main
 
 # full path to the repo so symlinks aren't relative
 repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
 
+# Link everything under ./home to ${HOME}
 findandlink ${repohome} ${HOME}
 
-[[ ! -d ~/bin ]] && mkdir ~/bin
+# Install all the fun things
+platform=""
+if [[ -f /etc/os-release ]] ; then
+  source /etc/os-release
+  platform=${ID}
+fi
+case ${platform} in
+ centos|amzn|fedora)
+   rpms=$(rpmcheck git tig vim-enhanced tmux)
+   [[ -n ${rpms} ]] && yum install ${rpms}
+  ;;
+esac
 
 exit $?
