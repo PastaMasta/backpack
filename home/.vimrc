@@ -67,9 +67,14 @@ endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 """ Create new scripts with template files if a skeleton with the same extension exists
+""" Also chmod +x the file if not already +x'ed
 if has("autocmd")
   augroup templates
     au!
     autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
+    autocmd BufWritePost *.sh,*.py,*.rb
+    \  if getfperm(expand('%')) !~# 'x'
+    \|   silent execute "! chmod +x %" | w
+    \| endif
   augroup END
 endif
