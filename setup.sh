@@ -77,4 +77,7 @@ case ${platform} in
   ;;
 esac
 
+# Install vim plugins if it's the first time
+[[ ! -d ~/.vim/plugged/ ]] && vim -c PlugInstall
+
 exit $?

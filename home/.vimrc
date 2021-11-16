@@ -33,7 +33,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 """ vim-plug plugins:
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
