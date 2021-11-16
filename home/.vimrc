@@ -65,3 +65,11 @@ function! Smart_TabComplete()
   endif
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+
+""" Create new scripts with template files if a skeleton with the same extension exists
+if has("autocmd")
+  augroup templates
+    au!
+    autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
+  augroup END
+endif
