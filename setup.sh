@@ -1,11 +1,14 @@
 #! /bin/bash
-[[ $DEBUG ]] && set -x
+[[ -n ${DEBUG} ]] && set -x
 
 #
-# Sets up symlinks for my custom configs, dot files and other items
+# Sets up symlinks for my custom configs, dot files and other items.
+# Also installs packages I like and sets up vim plugins.
 #
 
+#------------------------------------------------------------------------------+
 # Checks and validates links
+#------------------------------------------------------------------------------+
 function link {
   typeset source=$1
   typeset target=$2
@@ -15,7 +18,7 @@ function link {
   elif [[ -L ${target} ]] ; then # Check where the link goes
 
     if [[ $(readlink ${target}) == ${source} ]] ; then # nothing to do
-      [[ $DEBUG ]] && echo "${target} is already linked to: $(readlink ${target})"
+      [[ -n ${DEBUG} ]] && echo "${target} is already linked to: $(readlink ${target})"
     elif readlink ${target} | grep -q backpack-local ; then # Linked to local copy
       echo "${target} is already linked to local version: $(readlink ${target})"
     else # Linked elsewhere
@@ -29,7 +32,9 @@ function link {
   fi
 }
 
+#------------------------------------------------------------------------------+
 # Recursive function to Find files in source dir and symlink to target
+#------------------------------------------------------------------------------+
 function findandlink {
   typeset source=$1
   typeset target=$2
@@ -46,7 +51,10 @@ function findandlink {
   done
 }
 
+#------------------------------------------------------------------------------+
 # Takes a list of RPMS and retuns a list of those not installed
+# so output isn't spammed with "already installed"
+#------------------------------------------------------------------------------+
 function rpmcheck {
   typeset rpms=""
   for rpm in $* ; do
@@ -55,24 +63,44 @@ function rpmcheck {
   echo ${rpms}
 }
 
-# main
+#------------------------------------------------------------------------------+
+# main()
+#------------------------------------------------------------------------------+
 
 # full path to the repo so symlinks aren't relative
 repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
 repoversioned="${repodir}/versioned"
 
+rpms="
+git
+tig
+vim-enhanced
+tmux
+cowsay
+findutils
+psmisc
+xpanes
+lsof
+nmap
+nmap-ncat
+"
 
-# Install all the fun things
+# Check what platform we're on for different install lists
 platform=""
 if [[ -f /etc/os-release ]] ; then
   source /etc/os-release
   platform=${ID}
 fi
+
+# Install all the fun packages
 case ${platform} in
  centos|amzn|fedora)
-   rpms=$(rpmcheck git tig vim-enhanced tmux)
-   [[ -n ${rpms} ]] && yum install ${rpms}
+   rpms_to_install=$(rpmcheck ${rpms})
+   if [[ -n ${rpms_to_install} ]] ; then
+     echo "Installing missing packages: ${rpms_to_install}"
+     sudo yum install ${rpms_to_install}
+   fi
   ;;
 esac
 

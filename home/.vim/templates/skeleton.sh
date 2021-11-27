@@ -1,5 +1,5 @@
 #! /bin/bash
-[[ $DEBUG ]] && set -x
+[[ -n ${DEBUG} ]] && set -x
 
 function usage {
   echo "$0"
