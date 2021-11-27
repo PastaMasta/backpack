@@ -1,0 +1,11 @@
+# .tmux.conf
+
+set-option -g allow-rename off
+set -g default-terminal xterm-256color
+set -g aggressive-resize on
+set -g renumber-windows on
+
+# 2.0+
+bind '"' split-window -v -c "#{pane_current_path}"
+bind '%' split-window -h -c "#{pane_current_path}"
+set -g mouse on

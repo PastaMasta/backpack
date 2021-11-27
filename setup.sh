@@ -60,9 +60,8 @@ function rpmcheck {
 # full path to the repo so symlinks aren't relative
 repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
+repoversioned="${repodir}/versioned"
 
-# Link everything under ./home to ${HOME}
-findandlink ${repohome} ${HOME}
 
 # Install all the fun things
 platform=""
@@ -76,6 +75,15 @@ case ${platform} in
    [[ -n ${rpms} ]] && yum install ${rpms}
   ;;
 esac
+
+# Handle if we've got any files for specific package versions
+case $(tmux -V) in
+  *1*) ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
+  *2*) ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
+esac
+
+# Link everything under ./home to ${HOME}
+findandlink ${repohome} ${HOME}
 
 # Install vim plugins if it's the first time
 [[ ! -d ~/.vim/plugged/ ]] && vim -c PlugInstall
