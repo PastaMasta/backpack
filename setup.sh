@@ -88,6 +88,9 @@ lsof
 nmap
 nmap-ncat
 vagrant
+curl
+wget
+tree
 "
 
 # Check what platform we're on for different install lists
