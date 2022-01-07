@@ -72,6 +72,9 @@ repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
 repoversioned="${repodir}/versioned"
 
+#------------------------------------------------------------------------------+
+# Package installs
+#------------------------------------------------------------------------------+
 rpms="
 git
 tig
@@ -84,6 +87,10 @@ xpanes
 lsof
 nmap
 nmap-ncat
+vagrant
+curl
+wget
+tree
 "
 
 # Check what platform we're on for different install lists
@@ -104,7 +111,10 @@ case ${platform} in
   ;;
 esac
 
-# Handle if we've got any files for specific package versions
+#------------------------------------------------------------------------------+
+# Handle if we've got any files for specific package versions,
+# then link everything up
+#------------------------------------------------------------------------------+
 case $(tmux -V) in
   *1*) ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
   *2*) ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
@@ -113,7 +123,23 @@ esac
 # Link everything under ./home to ${HOME}
 findandlink ${repohome} ${HOME}
 
+#------------------------------------------------------------------------------+
+# Misc extra tasks
+#------------------------------------------------------------------------------+
+
 # Install vim plugins if it's the first time
 [[ ! -d ~/.vim/plugged/ ]] && vim -c PlugInstall
+
+
+if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+  if ! vagrant plugin list | grep -q virtualbox_WSL2 ; then
+   vagrant plugin install virtualbox_WSL2
+   vagrant plugin repair
+  fi
+fi
+
+# Clone other git repos if missing
+[[ -d ~/notes ]] || git clone git@github.com:PastaMasta/notes.git ~/notes
+[[ -d ~/scripts ]] || git clone git@github.com:PastaMasta/scripts.git ~/scripts
 
 exit $?
