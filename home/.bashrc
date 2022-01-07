@@ -94,7 +94,16 @@ function noproxy {
 }
 
 function vimtype {
-  vim $(type -p $*)
+  case $(type -t $*) in
+    file) vim $(type -p $*) ;;
+    function) # Find where the funciton is defined
+      shopt -s extdebug
+      read -r _ line file <<<$(declare -F $*)
+      shopt -u extdebug
+      vim ${file} +${line}
+    ;;
+    *) type $* ;;
+  esac
 }
 complete -c vimtype
 
