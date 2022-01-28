@@ -52,15 +52,26 @@ function findandlink {
 }
 
 #------------------------------------------------------------------------------+
-# Takes a list of RPMS and retuns a list of those not installed
-# so output isn't spammed with "already installed"
+# Takes a list of packages and retuns a list of those not installed
+# so output isn't spammed with "already installed" etc
 #------------------------------------------------------------------------------+
-function rpmcheck {
-  typeset rpms=""
-  for rpm in $* ; do
-    rpm -q $rpm > /dev/null || rpms="${rpms} ${rpm}"
-  done
-  echo ${rpms}
+function packagecheck {
+  typeset type=$1
+  shift
+  typeset packages=""
+  case ${type} in
+    rpm)
+      for rpm in $* ; do
+        rpm -q ${rpm} > /dev/null || packages="${packages} ${rpm}"
+      done
+    ;;
+    gem)
+      for gem in $* ; do
+        gem info -i ${gem} > /dev/null || packages="${packages} ${gem}"
+      done
+    ;;
+  esac
+  echo ${packages}
 }
 
 #------------------------------------------------------------------------------+
@@ -100,16 +111,31 @@ if [[ -f /etc/os-release ]] ; then
   platform=${ID}
 fi
 
-# Install all the fun packages
+# Install all the fun os packages
 case ${platform} in
  centos|amzn|fedora)
-   rpms_to_install=$(rpmcheck ${rpms})
+   rpms_to_install=$(packagecheck rpm ${rpms})
    if [[ -n ${rpms_to_install} ]] ; then
      echo "Installing missing packages: ${rpms_to_install}"
      sudo yum install ${rpms_to_install}
    fi
   ;;
 esac
+
+# Install gems
+gems="
+pry
+mdl
+"
+gems_to_install=$(packagecheck gem ${gems})
+if [[ -n ${gems_to_install} ]] ; then
+  echo "Installing missing gems: ${gems_to_install}"
+  gem install ${gems_to_install}
+fi
+
+# TODO: Install pips
+pips="
+"
 
 #------------------------------------------------------------------------------+
 # Handle if we've got any files for specific package versions,
@@ -130,7 +156,7 @@ findandlink ${repohome} ${HOME}
 # Install vim plugins if it's the first time
 [[ ! -d ~/.vim/plugged/ ]] && vim -c PlugInstall
 
-
+# Setup Vagrant if we're in WSL
 if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   if ! vagrant plugin list | grep -q virtualbox_WSL2 ; then
    vagrant plugin install virtualbox_WSL2
