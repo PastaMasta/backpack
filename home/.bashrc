@@ -96,6 +96,18 @@ function noproxy {
 function vimtype {
   case $(type -t $*) in
     file) vim $(type -p $*) ;;
+    alias) # Search bashrc files for the definition
+      sources="
+      ${HOME}/.bashrc
+      ${HOME}/.bashbag/*
+      /etc/bashrc
+      "
+      for source in ${sources} ; do
+        IFS=: read -r sourcefile line _ <<<$(grep -n -H "alias ${*}=" ${source})
+        [[ -n ${sourcefile} ]] || continue
+        vim ${sourcefile} +${line}
+      done
+    ;;
     function) # Find where the funciton is defined
       shopt -s extdebug
       read -r _ line file <<<$(declare -F $*)
