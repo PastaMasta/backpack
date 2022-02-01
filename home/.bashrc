@@ -3,7 +3,7 @@
 [[ ${DEBUG} ]] && set -x
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
+if [[ -f /etc/bashrc ]] ; then
   source /etc/bashrc
 fi
 
@@ -32,7 +32,7 @@ alias v='vim'
 alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
 function basepwd {
-  basename `pwd`
+  basename $(pwd)
 }
 alias bpwd=basepwd
 alias c='clear'
@@ -70,7 +70,7 @@ function tw {
   if [[ -n $1 ]] ; then
     tmux rename-window $1
   else
-    tmux rename-window `basepwd`
+    tmux rename-window $(basepwd)
   fi
 }
 
@@ -79,20 +79,19 @@ function mounted {
   if [[ $# -ge 1 ]] ; then
     /bin/mount $*
   else
-    echo -e "------ ---------- --- -------\n` \
+    echo -e "------ ---------- --- -------\n$( \
     /bin/mount 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' \
-    `" | column -t --table-columns 'Device,Mountpoint,vfs,Options'
+    )" | column -t --table-columns 'Device,Mountpoint,vfs,Options'
   fi
 }
+alias mount="mounted"
 
-function cdmkdir {
-  mkdir -p $1 ; cd $1
-}
-
+# Begone proxy
 function noproxy {
   unset http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
 }
 
+# Opens vim on the given file from $PATH or where an alias or function is defined
 function vimtype {
   case $(type -t $*) in
     file) vim $(type -p $*) ;;
@@ -119,6 +118,7 @@ function vimtype {
 }
 complete -c vimtype
 
+# Find which RPM something in $PATH i from
 function rpmtype {
   rpm -qf $(type -p $*)
 }
