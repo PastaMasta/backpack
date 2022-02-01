@@ -17,7 +17,7 @@ set hlsearch
 highlight LineNr ctermfg=0 ctermbg=green
 
 """ Local version if it's there
-if filereadable("~/.vimrc_local")
+if filereadable(expand("~/.vimrc_local"))
   source ~/.vimrc_local
 endif
 
