@@ -93,28 +93,30 @@ function noproxy {
 
 # Opens vim on the given file from $PATH or where an alias or function is defined
 function vimtype {
-  case $(type -t $*) in
-    file) vim $(type -p $*) ;;
-    alias) # Search bashrc files for the definition
-      sources="
-      ${HOME}/.bashrc
-      ${HOME}/.bashbag/*
-      /etc/bashrc
-      "
-      for source in ${sources} ; do
-        IFS=: read -r sourcefile line _ <<<$(grep -n -H "alias ${*}=" ${source})
-        [[ -n ${sourcefile} ]] || continue
-        vim ${sourcefile} +${line}
-      done
-    ;;
-    function) # Find where the funciton is defined
-      shopt -s extdebug
-      read -r _ line file <<<$(declare -F $*)
-      shopt -u extdebug
-      vim ${file} +${line}
-    ;;
-    *) type $* ;;
-  esac
+  for i in $* ; do
+    case $(type -t $i) in
+      file) vim $(type -p $i) ;;
+      alias) # Search bashrc files for the definition
+        sources="
+        ${HOME}/.bashrc
+        ${HOME}/.bashbag/*
+        /etc/bashrc
+        "
+        for source in ${sources} ; do
+          IFS=: read -r sourcefile line _ <<<$(grep -n -H "alias ${i}=" ${source})
+          [[ -n ${sourcefile} ]] || continue
+          vim ${sourcefile} +${line}
+        done
+      ;;
+      function) # Find where the funciton is defined
+        shopt -s extdebug
+        read -r _ line file <<<$(declare -F $i)
+        shopt -u extdebug
+        vim ${file} +${line}
+      ;;
+      *) type $i ;;
+    esac
+  done
 }
 complete -c vimtype
 
