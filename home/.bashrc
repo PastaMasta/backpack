@@ -74,7 +74,11 @@ alias bpwd=basepwd
 # Renames a tmux window to current dir name, or given string, or basename if it's a dir
 function tw {
   if [[ -n $1 ]] ; then
-    tmux rename-window $1
+    if [[ -d $1 ]] ; then
+      tmux rename-window $(basepwd $1)
+    else
+      tmux rename-window $1
+    fi
   else
     tmux rename-window $(basepwd)
   fi
