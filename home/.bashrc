@@ -31,10 +31,6 @@ alias whence='type -p'
 alias v='vim'
 alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
-function basepwd {
-  basename $(pwd)
-}
-alias bpwd=basepwd
 alias c='clear'
 
 #
@@ -65,7 +61,17 @@ function sl- {
 # Functions
 #------------------------------------------------------------------------------+
 
-# Renames a tmux window to current dir name
+# Returns the basename of $PWD or a given path
+function basepwd {
+  if [[ -n $1 ]] ; then
+    basename $(realpath $1)
+  else
+    basename $(pwd)
+  fi
+}
+alias bpwd=basepwd
+
+# Renames a tmux window to current dir name, or given string, or basename if it's a dir
 function tw {
   if [[ -n $1 ]] ; then
     tmux rename-window $1
