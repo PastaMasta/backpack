@@ -130,11 +130,17 @@ function vimtype {
 }
 complete -c vimtype
 
-# Find which RPM something in $PATH i from
+# Find which RPM something in $PATH is from
 function rpmtype {
   rpm -qf $(type -p $*)
 }
 complete -c rpmtype
+
+# Changes directory to where something in $PATH is from
+function cdtype {
+  cd $(dirname $(type -p $*))
+}
+complete -c cdtype
 
 # finds any TODO: tags in files
 function todo {
