@@ -91,7 +91,6 @@ git
 tig
 vim-enhanced
 tmux
-cowsay
 findutils
 psmisc
 xpanes
@@ -102,6 +101,9 @@ vagrant
 curl
 wget
 tree
+jq
+pipenv
+ansible
 "
 
 # Check what platform we're on for different install lists
