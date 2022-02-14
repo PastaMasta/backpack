@@ -25,6 +25,10 @@ endif
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """ Install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -34,16 +38,25 @@ endif
 
 """ vim-plug plugins:
 call plug#begin('~/.vim/plugged')
+"
+" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Plugin Configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """ Airline config
 let g:airline_theme='deus'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Tab completion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
 
@@ -66,8 +79,10 @@ function! Smart_TabComplete()
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Create new scripts with template files if a skeleton with the same extension exists
 """ Also chmod +x the file if not already +x'ed
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
   augroup templates
     au!
