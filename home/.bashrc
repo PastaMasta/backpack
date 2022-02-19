@@ -33,6 +33,9 @@ alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
 alias c='clear'
 
+alias vimrc='$EDITOR ~/.vimrc'
+alias bashrc='$EDITOR ~/.bashrc'
+
 #
 # Dir shortcuts
 #

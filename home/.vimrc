@@ -67,10 +67,10 @@ let NERDTreeShowHidden=1
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 """ Airline config
-let g:airline_theme='deus'
+let g:airline_theme='molokai'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Tab completion
+""" Tab completion " TODO: Update this: so tab cycle choices
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
