@@ -107,6 +107,7 @@ ansible
 rsync
 man-db
 man-pages
+bash-completion
 "
 
 # Check what platform we're on for different install lists
