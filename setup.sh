@@ -104,6 +104,9 @@ tree
 jq
 pipenv
 ansible
+rsync
+man-db
+man-pages
 "
 
 # Check what platform we're on for different install lists
@@ -165,6 +168,9 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
    vagrant plugin repair
   fi
 fi
+
+# Ensure man db is setup
+sudo mandb
 
 # Clone other git repos if missing
 [[ -d ~/notes ]] || git clone git@github.com:PastaMasta/notes.git ~/notes
