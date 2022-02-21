@@ -171,7 +171,7 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
 fi
 
 # Ensure man db is setup
-sudo mandb
+sudo mandb > /dev/null
 
 # Clone other git repos if missing
 [[ -d ~/notes ]] || git clone git@github.com:PastaMasta/notes.git ~/notes
