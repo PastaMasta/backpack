@@ -20,3 +20,9 @@
 
 [alias]
   kermit = commit
+
+[pager]
+  # diff-highlight is script provided by git that shows word-by-word diff
+  log  = /usr/share/git-core/contrib/diff-highlight | less
+  show = /usr/share/git-core/contrib/diff-highlight | less
+  diff = /usr/share/git-core/contrib/diff-highlight | less
