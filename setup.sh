@@ -84,7 +84,7 @@ repohome="${repodir}/home"
 repoversioned="${repodir}/versioned"
 
 #------------------------------------------------------------------------------+
-# Package installs
+# Package installs # TODO: move this to ansible ?
 #------------------------------------------------------------------------------+
 rpms="
 git
@@ -142,6 +142,10 @@ fi
 # TODO: Install pips
 pips="
 "
+
+#------------------------------------------------------------------------------+
+# Compile and build our own versions of tmux and vim # TODO: ???
+#------------------------------------------------------------------------------+
 
 #------------------------------------------------------------------------------+
 # Handle if we've got any files for specific package versions,

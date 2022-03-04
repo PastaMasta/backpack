@@ -33,8 +33,8 @@ alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
 alias c='clear'
 
-alias vimrc='$EDITOR ~/.vimrc'
-alias bashrc='$EDITOR ~/.bashrc'
+alias vimrc='${EDITOR} ~/.vimrc'
+alias bashrc='${EDITOR} ~/.bashrc'
 
 #
 # Dir shortcuts
@@ -108,7 +108,7 @@ function noproxy {
 function vimtype {
   for i in $* ; do
     case $(type -t $i) in
-      file) vim $(type -p $i) ;;
+      file) ${EDITOR} $(type -p $i) ;;
       alias) # Search bashrc files for the definition
         sources="
         ${HOME}/.bashrc
@@ -118,14 +118,14 @@ function vimtype {
         for source in ${sources} ; do
           IFS=: read -r sourcefile line _ <<<$(grep -n -H "alias ${i}=" ${source})
           [[ -n ${sourcefile} ]] || continue
-          vim ${sourcefile} +${line}
+          ${EDITOR} ${sourcefile} +${line}
         done
       ;;
       function) # Find where the funciton is defined
         shopt -s extdebug
         read -r _ line file <<<$(declare -F $i)
         shopt -u extdebug
-        vim ${file} +${line}
+        ${EDITOR} ${file} +${line}
       ;;
       *) type $i ;;
     esac
@@ -148,5 +148,5 @@ complete -c cdtype
 # finds any TODO: tags in files
 function todo {
   File=${1:-*} # Defaults to all files
-  grep -R -H -o -n -E "TODO:.*"  ${File} | awk -F: '{print "vim",$1,"+"$2,"#",substr($0, index($0,$3))}'
+  grep -R -H -o -n -E "TODO:.*"  ${File} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'
 }
