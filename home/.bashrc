@@ -20,6 +20,15 @@ for i in ~/.bashbag/* ; do
   source $i
 done
 
+# Start ssh-agent if not already running
+if [[ -z ${SSH_AGENT_PID} ]] ; then
+  eval $(ssh-agent)
+  if [[ -n ${TMUX} ]] ; then
+    tmux set-environment SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
+    tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
+  fi
+fi
+
 #------------------------------------------------------------------------------+
 # Aliases
 #------------------------------------------------------------------------------+
