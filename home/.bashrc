@@ -28,6 +28,10 @@ if [[ -z ${SSH_AGENT_PID} ]] ; then
     tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
   fi
 fi
+# And add ssh keys if missing
+for key in id_github_pastamasta id_rsa ; do
+  ssh-add -l | grep -q ${key} || ssh-add ~/.ssh/${key}
+done
 
 #------------------------------------------------------------------------------+
 # Aliases
