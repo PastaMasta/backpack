@@ -33,6 +33,10 @@ for key in id_github_pastamasta id_rsa id_git ; do
   ssh-add -l | grep -q -E "/${key}\s" || ssh-add ~/.ssh/${key}
 done
 
+# tmux
+# Connect to open session
+# if already connected just bash it up
+
 #------------------------------------------------------------------------------+
 # Aliases
 #------------------------------------------------------------------------------+
@@ -91,9 +95,9 @@ alias bpwd=basepwd
 function tw {
   if [[ -n $1 ]] ; then
     if [[ -d $1 ]] ; then
-      tmux rename-window $(basepwd $1)
+      tmux rename-window "$(basepwd $1)"
     else
-      tmux rename-window $1
+      tmux rename-window "$1"
     fi
   else
     tmux rename-window $(basepwd)
@@ -160,6 +164,27 @@ complete -c cdtype
 
 # finds any TODO: tags in files
 function todo {
-  File=${1:-*} # Defaults to all files
-  grep -R -H -o -n -E "TODO:.*"  ${File} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'
+  Files=${*:-*} # Defaults to all files
+  grep -R -H -o -n -E "TODO:.*"  ${Files} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'
 }
+
+# sorted df
+function df {
+  if [[ $# -le 0 ]] | [[ $1 == '-h' ]] ; then
+    /usr/bin/df -h | sort -r -k 5 -i
+  else
+    /usr/bin/df $*
+  fi
+}
+
+# Retries a command until exit 0
+function retry {
+  TIMES=5
+  SLEEP=1
+  for TIME in $(seq 1 ${TIMES}) ; do
+    $* && break
+    sleep ${SLEEP}
+    echo "Retrying: ${TIME} of ${TIMES}"
+  done
+}
+complete -c retry
