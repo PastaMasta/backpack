@@ -30,6 +30,7 @@ if [[ -z ${SSH_AGENT_PID} ]] ; then
 fi
 # And add ssh keys if missing
 for key in id_github_pastamasta id_rsa id_git ; do
+  [[ ! -s ~/.ssh/${key} ]] && continue
   ssh-add -l | grep -q -E "/${key}\s" || ssh-add ~/.ssh/${key}
 done
 
