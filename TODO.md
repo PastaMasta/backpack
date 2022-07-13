@@ -2,7 +2,11 @@ TODO
 ========
 Things todo
 
+Setup
+--------
+
 - Warn about older versions of tmux / vim or autodownload / compile ?
+- Move package installs etc into ansible
 
 Vim
 --------
@@ -12,6 +16,8 @@ Vim
 - Have a go with neovim / other vims ?
 - Split config out into a more readable .vimrc
 - Switch to tmux pane if file is already open
+- Tab completion: always show suggestions, tab / enter swaps through them
+- IDE / testing stuff ?
 
 Tmux
 --------
@@ -20,3 +26,9 @@ Tmux
 - Shared copy/paste with alias clip behaving the same as WSL: echo something | clip
 - mode-keys vi
 - Start as first command, connect to existing session if there is one
+
+Git
+-------
+
+- Highlight changes in git add -p like in git diff
+- git undo alias to uncommit unpushed change
