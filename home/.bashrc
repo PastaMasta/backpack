@@ -20,20 +20,6 @@ for i in ~/.bashbag/* ; do
   source $i
 done
 
-# Start ssh-agent if not already running
-if [[ -z ${SSH_AGENT_PID} ]] ; then
-  eval $(ssh-agent)
-  if [[ -n ${TMUX} ]] ; then
-    tmux set-environment SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
-    tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
-  fi
-fi
-# And add ssh keys if missing
-for key in id_github_pastamasta id_rsa id_git ; do
-  [[ ! -s ~/.ssh/${key} ]] && continue
-  ssh-add -l | grep -q -E "/${key}\s" || ssh-add ~/.ssh/${key}
-done
-
 # tmux
 # Connect to open session
 # if already connected just bash it up
@@ -189,3 +175,26 @@ function retry {
   done
 }
 complete -c retry
+
+function ssh-agent {
+  if [[ $# -ge 1 ]] ; then
+    $(type -fP ssh-agent) $*
+  else
+    # Start ssh-agent if not already running
+    if [[ -z ${SSH_AGENT_PID} ]] ; then
+      eval $($(type -fP ssh-agent))
+      if [[ -n ${TMUX} ]] ; then
+        tmux set-environment SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
+        tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
+      fi
+    fi
+  fi
+}
+
+function ssh-keys {
+  # And add ssh keys if missing
+  for key in id_github_pastamasta id_rsa id_git ; do
+    [[ ! -s ~/.ssh/${key} ]] && continue
+    ssh-add -l | grep -q -E "/${key}\s" || ssh-add ~/.ssh/${key}
+  done
+}
