@@ -49,9 +49,9 @@ alias backpack='cd ~/backpack ; tw'
 alias notes='cd ~/notes ; tw'
 alias scripts='cd ~/scripts ; tw'
 
-#
+#------------------------------------------------------------------------------+
 # Typos
-#
+#------------------------------------------------------------------------------+
 alias it='git'
 alias gerp='grep'
 alias sl='ls'
@@ -94,10 +94,10 @@ function tw {
 # AIX like pretty mount, because /bin/mount is pretty much unreadable
 function mounted {
   if [[ $# -ge 1 ]] ; then
-    /bin/mount $*
+    $(type -fP mount) $*
   else
     echo -e "------ ---------- --- -------\n$( \
-    /bin/mount 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' \
+      $(type-fP mount) 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' \
     )" | column -t --table-columns 'Device,Mountpoint,vfs,Options'
   fi
 }
