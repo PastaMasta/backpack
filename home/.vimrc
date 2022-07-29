@@ -40,7 +40,7 @@ endif
 
 """ vim-plug plugins:
 call plug#begin('~/.vim/plugged')
-"
+
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -52,6 +52,10 @@ Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ryanoasis/vim-devicons' " load last TODO: install fonts?
+
+" Other syntaxies
+Plug 'jvirtanen/vim-hcl'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
