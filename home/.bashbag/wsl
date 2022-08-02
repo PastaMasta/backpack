@@ -1,6 +1,8 @@
 # Bashrc functions for use in a WSL environment.
 if [[ -n ${WSL_DISTRO_NAME} ]] ; then
 
+  alias wsl=wsl.exe
+
   # Powerhell
   alias powershell=powershell.exe
 

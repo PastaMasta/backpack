@@ -14,7 +14,7 @@ Vim
 - Compile and build from a set version, so configs match up
 - Column highlight only on indent-sensitive files - python, yaml
 - Have a go with neovim / other vims ?
-- Split config out into a more readable .vimrc
+- Split config out into a more readable .vimrc, plugin config in their own files
 - Switch to tmux pane if file is already open
 - Tab completion: always show suggestions, tab / enter swaps through them
 - IDE / testing stuff ?

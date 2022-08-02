@@ -10,6 +10,7 @@ set updatetime=100
 set hlsearch
 set encoding=UTF-8
 set cursorcolumn
+syntax on
 
 """ Folding
 " set foldmethod=syntax
@@ -59,7 +60,7 @@ Plug 'jvirtanen/vim-hcl'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Plugin Configuration
+""" Plugin Configurations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ NERDTree config
