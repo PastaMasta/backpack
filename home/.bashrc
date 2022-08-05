@@ -199,7 +199,7 @@ function ssh-keys {
 
   # And add ssh keys if missing
   for key in ${keys} ; do
-    [[ ! -s ~/.ssh/${key} ]] && continue
-    ssh-add -l | grep -q -E "/${key}\s" || ssh-add ~/.ssh/${key}
+    [[ -s ${key} ]] || continue
+    ssh-add -l | grep -q -E "${key}\s" || ssh-add ${key}
   done
 }
