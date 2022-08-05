@@ -1,36 +1,48 @@
 "" .vimrc
 
-set background=dark
-set shiftwidth=2
-set expandtab
-set mouse=a
-set belloff=all
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-set updatetime=100
-set hlsearch
-set encoding=UTF-8
-set cursorcolumn
-syntax on
-
-""" Folding
-" set foldmethod=syntax
-" set foldlevel=1
-
-""" Number highlighting
-highlight LineNr ctermfg=0 ctermbg=green
-
 """ Local version if it's there
 if filereadable(expand("~/.vimrc_local"))
   source ~/.vimrc_local
 endif
 
+"------------------------------------------------------------------------------+
+" Basic config
+"------------------------------------------------------------------------------+
+
+""" Visual changes
+syntax on
+set background=dark
+set belloff=all
+set encoding=UTF-8
+set cursorcolumn
+
+" Highlight all search hits
+set hlsearch
+
+" Number highlighting
+set number
+highlight LineNr ctermfg=0 ctermbg=blue
+
+""" Inputs
+set shiftwidth=2
+set expandtab
+set mouse=a
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+
+" Gotta go fast
+set updatetime=100
+
+""" Folding
+set foldmethod=syntax
+set foldlevel=1
+
 """ Catch trailing whitespace:
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------+
+" Plugins
+"------------------------------------------------------------------------------+
 
 """ Install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -39,45 +51,56 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-""" vim-plug plugins:
+"--------------------------------------+
+" vim-plug plugins:
+"--------------------------------------+
 call plug#begin('~/.vim/plugged')
 
-" airline
+""" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 
-" NERDTree
+""" NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ryanoasis/vim-devicons' " load last TODO: install fonts?
 
-" Other syntaxies
+""" Other syntaxies
 Plug 'jvirtanen/vim-hcl'
 
 call plug#end()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Plugin Configurations
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------+
+" Plugin-specific config
+"------------------------------------------------------------------------------+
 
-""" NERDTree config
-" Start NERDTree. If a file is specified, move the cursor to its window.
+"--------------------------------------+
+" NERDTree config
+"--------------------------------------+
+""" Start NERDTree. If a file is specified, move the cursor to its window.
 let NERDTreeShowHidden=1
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
-" Exit Vim if NERDTree is the only window remaining in the only tab.
+""" Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-""" Airline config
+"--------------------------------------+
+" Airline config
+"--------------------------------------+
 let g:airline_theme='molokai'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Tab completion " TODO: Update this: so tab cycle choices
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------+
+" Functions etc
+"------------------------------------------------------------------------------+
+
+"--------------------------------------+
+" Tab completion
+" TODO: Update this: so tab cycle choices
+"--------------------------------------+
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
 
@@ -100,10 +123,10 @@ function! Smart_TabComplete()
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Create new scripts with template files if a skeleton with the same extension exists
-""" Also chmod +x the file if not already +x'ed
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"--------------------------------------+
+" Create new scripts with template files if a skeleton with the same extension exists
+" Also chmod +x the file if not already +x'ed
+"--------------------------------------+
 if has("autocmd")
   augroup templates
     au!
@@ -115,8 +138,10 @@ if has("autocmd")
   augroup END
 endif
 
+"--------------------------------------+
 " Search for selected text
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
+"--------------------------------------+
 vnoremap <silent> # :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
