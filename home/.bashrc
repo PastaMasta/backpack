@@ -7,22 +7,22 @@ if [[ -f /etc/bashrc ]] ; then
   source /etc/bashrc
 fi
 
-# Shell settings
-set -o vi
-set +H
-
-export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
-export PS1='[\u@\h:$?]\$ ' # [user@host:exitcode]$
-export EDITOR="vim"
-
-# Import all other bits
+# Source all other bits
 for i in ~/.bashbag/* ; do
   source $i
 done
 
-# tmux
-# Connect to open session
-# if already connected just bash it up
+export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
+
+# Shell settings
+set -o vi
+set +H
+export PS1='[\u@\h:$?]\$ ' # [user@host:exitcode]$
+export PS2='>>'
+shopt -s extglob
+
+# The one true editor
+export EDITOR="vim"
 
 #------------------------------------------------------------------------------+
 # Aliases
@@ -40,9 +40,7 @@ alias c='clear'
 alias vimrc='${EDITOR} ~/.vimrc'
 alias bashrc='${EDITOR} ~/.bashrc'
 
-#
 # Dir shortcuts
-#
 alias downloads='cd ~/downloads ; tw'
 alias Downloads=downloads
 alias backpack='cd ~/backpack ; tw'
@@ -155,6 +153,7 @@ function todo {
   grep -R -H -o -n -E "TODO:.*"  ${Files} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'
 }
 
+# TODO: Fix this
 # sorted df
 function df {
   if [[ $# -le 0 ]] | [[ $1 == '-h' ]] ; then
@@ -164,6 +163,7 @@ function df {
   fi
 }
 
+# TODO: make times configureable
 # Retries a command until exit 0
 function retry {
   TIMES=5
@@ -176,22 +176,25 @@ function retry {
 }
 complete -c retry
 
-function ssh-agent {
-  if [[ $# -ge 1 ]] ; then
-    $(type -fP ssh-agent) $*
-  else
-    # Start ssh-agent if not already running
-    if [[ -z ${SSH_AGENT_PID} ]] ; then
-      eval $($(type -fP ssh-agent))
-      if [[ -n ${TMUX} ]] ; then
-        tmux set-environment SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
-        tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
-      fi
-    fi
+# Wrapper around ssh-agent to add variables to tmux
+function ssh-agent-tmux {
+  # Start ssh-agent if not already running
+  if [[ -z ${SSH_AGENT_PID} ]] ; then
+    eval $($(type -fP ssh-agent))
+  fi
+
+  # Add to tmux if we're in it
+  if [[ -n ${TMUX} ]] ; then
+    tmux set-environment SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
+    tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
   fi
 }
 
+# Adds ssh-keys to the agent
 function ssh-keys {
+  # Start agent if missing
+  [[ -z ${SSH_AGENT_PID} ]] && ssh-agent-tmux
+
   # And add ssh keys if missing
   for key in id_github_pastamasta id_rsa id_git ; do
     [[ ! -s ~/.ssh/${key} ]] && continue
