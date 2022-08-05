@@ -178,7 +178,7 @@ fi
 sudo mandb > /dev/null
 
 # Clone other git repos if missing
-[[ -d ~/notes ]] || git clone git@github.com:PastaMasta/notes.git ~/notes
-[[ -d ~/scripts ]] || git clone git@github.com:PastaMasta/scripts.git ~/scripts
+[[ -d ~/notes ]] || git clone git@github.com:PastaMasta/notes.git ${repodir}/../notes
+[[ -d ~/scripts ]] || git clone git@github.com:PastaMasta/scripts.git ${repodir}/../scripts
 
 exit $?
