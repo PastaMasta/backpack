@@ -70,6 +70,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 """ Other syntaxies
 Plug 'jvirtanen/vim-hcl'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -92,6 +93,12 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " Airline config
 "--------------------------------------+
 let g:airline_theme='molokai'
+
+"--------------------------------------+
+" indentline config
+"--------------------------------------+
+let g:indentLine_leadingSpaceChar='·'
+let g:indentLine_leadingSpaceEnabled='1'
 
 "------------------------------------------------------------------------------+
 " Functions etc

@@ -18,6 +18,8 @@ Vim
 - Switch to tmux pane if file is already open
 - Tab completion: always show suggestions, tab / enter swaps through them
 - IDE / testing stuff ?
+- Add loggers to skelingtons
+- Copy highlighted text to WSL clipboard
 
 Tmux
 --------
