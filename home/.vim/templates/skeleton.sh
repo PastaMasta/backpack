@@ -1,7 +1,11 @@
 #! /bin/bash
 [[ -n ${DEBUG} ]] && set -x
 
-function usage {
+#
+# What does this do?
+#
+
+usage() {
   echo "$0"
   exit 1
 }
