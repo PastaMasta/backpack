@@ -17,9 +17,11 @@ set encoding=UTF-8
 set cursorcolumn
 
 " Highlight all search hits
+
+""" Highlight all search hits
 set hlsearch
 
-" Number highlighting
+""" Number highlighting
 set number
 highlight LineNr ctermfg=0 ctermbg=blue
 
@@ -29,12 +31,8 @@ set expandtab
 set mouse=a
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
-" Gotta go fast
+""" Gotta go fast
 set updatetime=100
-
-""" Folding
-set foldmethod=syntax
-set foldlevel=1
 
 """ Catch trailing whitespace:
 highlight ExtraWhitespace ctermbg=red guibg=red
