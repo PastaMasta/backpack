@@ -152,3 +152,23 @@ vnoremap <silent> # :<C-U>
   \gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gVzv:call setreg('"', old_reg, old_regtype)<CR>
+
+"--------------------------------------+
+" Copy mode, disables everything that gets in the way of copying out of
+" terminal
+"--------------------------------------+
+function! s:copy()
+  set nonumber
+  GitGutterDisable
+  ALEDisable
+endfunction
+function! s:nocopy()
+  set number
+  GitGutterEnable
+  ALEEnable
+endfunction
+
+command! Copy call <SID>copy()
+command! NoCopy call <SID>nocopy()
+command! Paste :set paste
+command! NoPaste :set nopaste
