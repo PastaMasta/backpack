@@ -169,6 +169,9 @@ function! s:nocopy()
 endfunction
 
 command! Copy call <SID>copy()
+command! COPY call <SID>copy()
 command! NoCopy call <SID>nocopy()
+command! NOCOPY call <SID>nocopy()
 command! Paste :set paste
+command! PASTE :set paste
 command! NoPaste :set nopaste
