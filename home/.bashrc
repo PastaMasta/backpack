@@ -147,6 +147,12 @@ function cdtype {
 }
 complete -c cdtype
 
+# Runs file on a param
+function filetype {
+  file $(type -p $*)
+}
+complete -c filetype
+
 # finds any TODO: tags in files
 function todo {
   Files=${*:-*} # Defaults to all files
