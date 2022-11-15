@@ -95,7 +95,7 @@ function mounted {
     $(type -fP mount) $*
   else
     echo -e "------ ---------- --- -------\n$( \
-      $(type-fP mount) 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' \
+      $(type -fP mount) 2>&1 | grep -v cgroup| awk '{print $1,$3,$5,$6}' \
     )" | column -t --table-columns 'Device,Mountpoint,vfs,Options'
   fi
 }
