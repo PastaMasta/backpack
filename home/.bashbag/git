@@ -3,6 +3,7 @@
 #
 alias s='git status ; git stash list'
 alias b='git branch -avv'
+alias bn='git rev-parse --abbrev-ref HEAD' # just the branch name
 alias d='git diff'
 alias gc='git commit'
 alias dc='git diff --cached'

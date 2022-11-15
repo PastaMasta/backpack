@@ -26,3 +26,10 @@
   log  = /usr/share/git-core/contrib/diff-highlight | less
   show = /usr/share/git-core/contrib/diff-highlight | less
   diff = /usr/share/git-core/contrib/diff-highlight | less
+
+[diff]
+        tool = vimdiff
+[difftool]
+        prompt = false
+[alias]
+        vimdiff = difftool
