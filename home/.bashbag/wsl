@@ -9,4 +9,11 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   # Clipboard on WSL, removing the trailing newline
   alias clip="sed -z '$ s/\n$//' | clip.exe"
 
+  function windows_get_dns_ip {
+    powershell.exe Get-DnsClientServerAddress | awk -F '[{}]' '/IPv4.*{.+}/ {print $2}' \
+      | awk -F, '{print $1}' \
+      | sort -u \
+      | head -1
+  }
+
 fi
