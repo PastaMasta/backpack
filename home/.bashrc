@@ -159,13 +159,12 @@ function todo {
   grep -R -H -o -n -E "TODO:.*"  ${Files} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'
 }
 
-# TODO: Fix this
 # sorted df
 function df {
-  if [[ $# -le 0 ]] | [[ $1 == '-h' ]] ; then
-    /usr/bin/df -h | sort -r -k 5 -i
+  if [[ $# -le 0 ]] || [[ $1 == '-h' ]] ; then
+    $(type -fP df) -h | sort -r -k 5 -i
   else
-    /usr/bin/df $*
+    $(type -fP df) $*
   fi
 }
 
