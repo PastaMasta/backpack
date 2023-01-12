@@ -162,11 +162,13 @@ function! s:copy()
   set nonumber
   GitGutterDisable
   ALEDisable
+  IndentLinesDisable
 endfunction
 function! s:nocopy()
   set number
   GitGutterEnable
   ALEEnable
+  IndentLinesEnable
 endfunction
 
 command! Copy call <SID>copy()
