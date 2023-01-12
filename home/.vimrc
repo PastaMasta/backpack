@@ -15,8 +15,9 @@ set background=dark
 set belloff=all
 set encoding=UTF-8
 set cursorcolumn
+set cursorline
 
-" Highlight all search hits
+highlight CursorLine   cterm=NONE ctermbg=darkgrey
 
 """ Highlight all search hits
 set hlsearch
