@@ -20,6 +20,7 @@
 
 [alias]
   kermit = commit
+  undo = reset --soft HEAD~1
 
 [pager]
   # diff-highlight is script provided by git that shows word-by-word diff

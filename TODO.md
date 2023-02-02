@@ -33,4 +33,3 @@ Git
 -------
 
 - Highlight changes in git add -p like in git diff
-- git undo alias to uncommit unpushed change
