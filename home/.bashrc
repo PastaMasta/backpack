@@ -24,6 +24,12 @@ shopt -s extglob
 # The one true editor
 export EDITOR="vim"
 
+# SSH keys to add with ssh-keys()
+sshkeys="${sshkeys}
+${HOME}/.ssh/id_git
+${HOME}/.ssh/id_github_pastamasta
+"
+
 #------------------------------------------------------------------------------+
 # Aliases
 #------------------------------------------------------------------------------+
@@ -185,6 +191,7 @@ complete -c retry
 function ssh-agent-tmux {
   # Start ssh-agent if not already running
   if [[ -z ${SSH_AGENT_PID} ]] ; then
+    printf "Starting ssh-agent: "
     eval $($(type -fP ssh-agent))
   fi
 
@@ -197,14 +204,19 @@ function ssh-agent-tmux {
 
 # Adds ssh-keys to the agent
 function ssh-keys {
+
   # Start agent if missing
   [[ -z ${SSH_AGENT_PID} ]] && ssh-agent-tmux
 
-  keys=$(ls ~/.ssh/id_git* | grep -v .pub)
+  # And add ssh keys if missing and if they actually exist
+  for key in ${sshkeys} ; do
 
-  # And add ssh keys if missing
-  for key in ${keys} ; do
-    [[ -s ${key} ]] || continue
-    ssh-add -l | grep -q -E "${key}\s" || ssh-add ${key}
+    if [[ -s ${key} ]] ; then
+      ssh-add -l | grep -q -E "${key}\s" || ssh-add "${key}"
+    else
+      echo "${key} file does not exist?"
+      continue
+    fi
+
   done
 }
