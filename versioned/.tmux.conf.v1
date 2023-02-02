@@ -1,4 +1,4 @@
-# .tmux.conf
+# .tmux.conf for v1
 
 set-option -g allow-rename off
 set -g default-terminal xterm-256color

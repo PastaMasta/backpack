@@ -154,6 +154,7 @@ pips="
 case $(tmux -V) in
   *1*) ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
   *2*) ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
+  *3*) ln -f -s ${repoversioned}/.tmux.conf.v3 ${repohome}/.tmux.conf ;;
 esac
 
 # Link everything under ./home to ${HOME}
