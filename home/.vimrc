@@ -69,7 +69,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 """ Other syntaxies
 Plug 'jvirtanen/vim-hcl'
-Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -162,13 +161,11 @@ function! s:copy()
   set nonumber
   GitGutterDisable
   ALEDisable
-  IndentLinesDisable
 endfunction
 function! s:nocopy()
   set number
   GitGutterEnable
   ALEEnable
-  IndentLinesEnable
 endfunction
 
 command! Copy call <SID>copy()
