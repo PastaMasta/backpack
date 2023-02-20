@@ -21,6 +21,7 @@
 [alias]
   kermit = commit
   undo = reset --soft HEAD~1
+  vimdiff = difftool
 
 [pager]
   # diff-highlight is script provided by git that shows word-by-word diff
@@ -32,5 +33,3 @@
         tool = vimdiff
 [difftool]
         prompt = false
-[alias]
-        vimdiff = difftool
