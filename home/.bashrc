@@ -160,6 +160,7 @@ function filetype {
 complete -c filetype
 
 # finds any TODO: tags in files
+# prints out $EDITOR, the file name, +linenumber and tag/comment
 function todo {
   Files=${*:-*} # Defaults to all files
   grep -R -H -o -n -E "TODO:.*"  ${Files} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'

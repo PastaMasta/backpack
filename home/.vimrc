@@ -175,3 +175,4 @@ command! NOCOPY call <SID>nocopy()
 command! Paste :set paste
 command! PASTE :set paste
 command! NoPaste :set nopaste
+command! NOPASTE :set nopaste
