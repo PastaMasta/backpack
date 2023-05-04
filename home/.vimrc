@@ -176,3 +176,6 @@ command! Paste :set paste
 command! PASTE :set paste
 command! NoPaste :set nopaste
 command! NOPASTE :set nopaste
+
+" TODO: Set tmux window name to file name, if not already renamed.
+" autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window %".expand(%))

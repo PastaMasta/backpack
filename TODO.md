@@ -20,6 +20,7 @@ Vim
 - IDE / testing stuff ?
 - Add loggers to skelingtons
 - Copy highlighted text to WSL clipboard
+- Switch to neovim / lunarvim?
 
 Tmux
 --------
