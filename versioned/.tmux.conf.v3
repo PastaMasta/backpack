@@ -4,9 +4,7 @@
 # Status lines:
 #
 set -g status-right-length 100
-set -g status-right '|#{tmux_mode_indicator}| CPU:#{cpu_bg_color} #{cpu_icon} #{cpu_percentage} | RAM:#{ram_bg_color} #{ram_icon} #{ram_percentage} | %Y-%m-%d %H:%M|'
-set -g @cpu_low_icon "_"
-set -g @ram_low_icon "_"
+set -g status-right '|#{tmux_mode_indicator}|#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} |#{ram_bg_color} 🐏: #{ram_icon} #{ram_percentage} #[bg=green]| %Y-%m-%d %H:%M|'
 
 #
 # Input changes
@@ -16,7 +14,7 @@ bind '"' split-window -v -c "#{pane_current_path}"
 bind '%' split-window -h -c "#{pane_current_path}"
 
 # prefix+r to reload config
-bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+bind-key R source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 
 # The one true editor
 set -g status-keys vi
@@ -52,15 +50,28 @@ set -g status-interval 5
 set -g history-limit 50000
 
 #
-# tmux plugin manager
+# tmux plugin manager and plugin config
 #
-# Install new plugins: `prefix + i`
+# Install new plugins: `prefix + I`
 # Updates plugin(s): `prefix + u`
 # Remove/uninstall plugins not on the plugin list: `prefix + alt + u`
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
-set -g @plugin 'tmux-plugins/tmux-cpu'
+
+set -g @plugin 'PastaMasta/tmux-cpu'
+
+set -g @cpu_low_icon "📉"
+set -g @cpu_medium_icon "📈"
+set -g @cpu_high_icon "🔥"
+set -g @cpu_wsl "true"
+
+set -g @ram_low_icon "📉"
+set -g @ram_medium_icon "📈"
+set -g @ram_high_icon "👀"
+set -g @ram_wsl "true"
+
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
+
 run '~/.tmux/plugins/tpm/tpm'
