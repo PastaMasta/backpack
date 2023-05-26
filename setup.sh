@@ -107,6 +107,9 @@ rsync
 man-db
 man-pages
 bash-completion
+figlet
+banner
+cowsay
 "
 
 # Check what platform we're on for different install lists
@@ -173,9 +176,11 @@ fi
 
 # Setup Vagrant if we're in WSL
 if [[ -n ${WSL_DISTRO_NAME} ]] ; then
-  if ! vagrant plugin list | grep -q virtualbox_WSL2 ; then
-   vagrant plugin install virtualbox_WSL2
-   vagrant plugin repair
+  if [[ -x $(type -p vagrant) ]] ; then
+    if ! vagrant plugin list | grep -q virtualbox_WSL2 ; then
+     vagrant plugin install virtualbox_WSL2
+     vagrant plugin repair
+    fi
   fi
 fi
 
