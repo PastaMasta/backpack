@@ -90,7 +90,6 @@ rpms="
 git
 tig
 vim-enhanced
-tmux
 findutils
 psmisc
 xpanes
@@ -163,6 +162,11 @@ findandlink ${repohome} ${HOME}
 #------------------------------------------------------------------------------+
 # Misc extra tasks
 #------------------------------------------------------------------------------+
+
+# tmux plugins
+if [[ ! -d ~/.tmux/plugins/tpm ]] ; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # Install vim plugins if it's the first time
 [[ ! -d ~/.vim/plugged/ ]] && vim -c PlugInstall
