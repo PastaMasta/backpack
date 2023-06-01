@@ -9,9 +9,10 @@ set -g status-right '|#{tmux_mode_indicator}|#{cpu_bg_color} CPU: #{cpu_icon} #{
 #
 # Input changes
 #
-# Open new panes in CWD
+# Open new windows and panes in CWD
 bind '"' split-window -v -c "#{pane_current_path}"
 bind '%' split-window -h -c "#{pane_current_path}"
+bind 'c' new-window -c "#{pane_current_path}"
 
 # prefix+r to reload config
 bind-key R source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
@@ -59,16 +60,14 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
 
 set -g @plugin 'PastaMasta/tmux-cpu'
-
 set -g @cpu_low_icon "📉"
 set -g @cpu_medium_icon "📈"
 set -g @cpu_high_icon "🔥"
-set -g @cpu_wsl "true"
-
+set -g @cpu_wsl_host "true"
 set -g @ram_low_icon "📉"
 set -g @ram_medium_icon "📈"
 set -g @ram_high_icon "👀"
-set -g @ram_wsl "true"
+set -g @ram_wsl_host "true"
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
