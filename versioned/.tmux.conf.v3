@@ -69,8 +69,4 @@ set -g @ram_medium_icon "📈"
 set -g @ram_high_icon "👀"
 set -g @ram_wsl_host "true"
 
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @continuum-restore 'on'
-
 run '~/.tmux/plugins/tpm/tpm'
