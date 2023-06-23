@@ -2,13 +2,18 @@
 [[ -n ${DEBUG} ]] && set -x
 
 #
-# Sets up symlinks for my custom configs, dot files and other items.
-# Also installs packages I like and sets up vim plugins.
+# Personal environment setup script:
+# - Sets up symlinks for all my custom configs, dot files and other items between ./home and $HOME
+# - Runs ansible to handle package installs
+# - Setup tmux and vim plugins
+# - Clones other git repos next to where this repo has been cloned down
 #
 
 #------------------------------------------------------------------------------+
-# Checks and validates links
+# Functions
 #------------------------------------------------------------------------------+
+
+# Checks and validates links
 function link {
   typeset source=$1
   typeset target=$2
@@ -32,9 +37,7 @@ function link {
   fi
 }
 
-#------------------------------------------------------------------------------+
 # Recursive function to Find files in source dir and symlink to target
-#------------------------------------------------------------------------------+
 function findandlink {
   typeset source=$1
   typeset target=$2
@@ -60,15 +63,7 @@ repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
 repoversioned="${repodir}/versioned"
 
-
-#------------------------------------------------------------------------------+
-# Compile and build our own versions of tmux and vim # TODO: ???
-#------------------------------------------------------------------------------+
-
-#------------------------------------------------------------------------------+
 # Handle if we've got any files for specific package versions,
-# then link everything up
-#------------------------------------------------------------------------------+
 case $(tmux -V) in
   *1*) ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
   *2*) ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
@@ -108,7 +103,7 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   fi
 fi
 
-# Ensure man db is setup
+# Ensure man db is setup and updated
 sudo mandb > /dev/null
 
 # Clone other git repos if missing
