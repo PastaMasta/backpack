@@ -77,12 +77,13 @@ findandlink ${repohome} ${HOME}
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
   ansible-galaxy collection install community.general
-  ansible-playbook ./packages.ansible.yaml
+  ansible-playbook ./setup.ansible.yaml
 else
   echo "Ansible not installed or executable!"
 fi
 
 #------------------------------------------------------------------------------+
+# TODO: move all this to ansible?
 # Misc extra tasks
 #------------------------------------------------------------------------------+
 
