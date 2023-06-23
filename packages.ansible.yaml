@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+---
+- name: Set up all my packages
+  hosts: localhost
+  become: yes
+  gather_facts: no
+  tasks:
+
+    - name: Install favorite OS packages
+      # when: ansible_facts['os_family'] == "Fedora"
+      package:
+        state: present
+        name:
+          - ansible
+          - banner
+          - bash-completion
+          - cowsay
+          - curl
+          - figlet
+          - findutils
+          - git
+          - jq
+          - lsof
+          - man-db
+          - man-pages
+          - nmap
+          - nmap-ncat
+          - psmisc
+          - rsync
+          - ShellCheck
+          - tig
+          - tree
+          - vagrant
+          - vim-enhanced
+          - wget
+          - xpanes
+
+    - name: Install python3 pips
+      ansible.builtin.pip:
+        state: present
+        executable: /usr/bin/pip3
+        name:
+          - cfn-flip
+          - json2yaml
+
+    - name: Install Ruby gems
+      gem:
+        state: present
+        user_install: false
+        name: "{{item}}"
+      loop:
+        - bundler
+        - mdl
+        - pry
+        - rake
+
+    - name: Install node.js npms
+      npm:
+        state: present
+        global: true
+        name: "{{item}}"
+      loop:
+        - alex
+        - write-good
+
+# TODO:
+# Install AWS CLI from URL
+# Download and compile vim / tmux?

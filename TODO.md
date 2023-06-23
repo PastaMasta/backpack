@@ -6,7 +6,6 @@ Setup
 --------
 
 - Warn about older versions of tmux / vim or autodownload / compile ?
-- Move package installs etc into ansible
 
 Vim
 --------

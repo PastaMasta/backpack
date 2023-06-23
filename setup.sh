@@ -52,29 +52,6 @@ function findandlink {
 }
 
 #------------------------------------------------------------------------------+
-# Takes a list of packages and retuns a list of those not installed
-# so output isn't spammed with "already installed" etc
-#------------------------------------------------------------------------------+
-function packagecheck {
-  typeset type=$1
-  shift
-  typeset packages=""
-  case ${type} in
-    rpm)
-      for rpm in $* ; do
-        rpm -q ${rpm} > /dev/null || packages="${packages} ${rpm}"
-      done
-    ;;
-    gem)
-      for gem in $* ; do
-        gem info -i ${gem} > /dev/null || packages="${packages} ${gem}"
-      done
-    ;;
-  esac
-  echo ${packages}
-}
-
-#------------------------------------------------------------------------------+
 # main()
 #------------------------------------------------------------------------------+
 
@@ -83,67 +60,6 @@ repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
 repoversioned="${repodir}/versioned"
 
-#------------------------------------------------------------------------------+
-# Package installs # TODO: move this to ansible ?
-#------------------------------------------------------------------------------+
-rpms="
-git
-tig
-vim-enhanced
-findutils
-psmisc
-xpanes
-lsof
-nmap
-nmap-ncat
-vagrant
-curl
-wget
-tree
-jq
-pipenv
-ansible
-rsync
-man-db
-man-pages
-bash-completion
-figlet
-banner
-cowsay
-"
-
-# Check what platform we're on for different install lists
-platform=""
-if [[ -f /etc/os-release ]] ; then
-  source /etc/os-release
-  platform=${ID}
-fi
-
-# Install all the fun os packages
-case ${platform} in
- centos|amzn|fedora)
-   rpms_to_install=$(packagecheck rpm ${rpms})
-   if [[ -n ${rpms_to_install} ]] ; then
-     echo "Installing missing packages: ${rpms_to_install}"
-     sudo yum install ${rpms_to_install}
-   fi
-  ;;
-esac
-
-# Install gems
-gems="
-pry
-mdl
-"
-gems_to_install=$(packagecheck gem ${gems})
-if [[ -n ${gems_to_install} ]] ; then
-  echo "Installing missing gems: ${gems_to_install}"
-  gem install ${gems_to_install}
-fi
-
-# TODO: Install pips
-pips="
-"
 
 #------------------------------------------------------------------------------+
 # Compile and build our own versions of tmux and vim # TODO: ???
@@ -161,6 +77,14 @@ esac
 
 # Link everything under ./home to ${HOME}
 findandlink ${repohome} ${HOME}
+
+# Install all the packages!
+if [[ -x $(type -p ansible-playbook) ]] ; then
+  ansible-galaxy collection install community.general
+  ansible-playbook ./packages.ansible.yaml
+else
+  echo "Ansible not installed or executable!"
+fi
 
 #------------------------------------------------------------------------------+
 # Misc extra tasks
