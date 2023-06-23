@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 ---
-- name: Set up all my packages
+- name: Setup environment
   hosts: localhost
-  become: yes
-  gather_facts: no
+  gather_facts: false
   tasks:
-
     - name: Install favorite OS packages
       # when: ansible_facts['os_family'] == "Fedora"
+      become: true
       package:
         state: present
         name:
@@ -39,9 +38,11 @@
       ansible.builtin.pip:
         state: present
         executable: /usr/bin/pip3
-        name:
-          - cfn-flip
-          - json2yaml
+        name: "{{item}}"
+      loop:
+        - cfn-flip
+        - json2yaml
+        - awscli
 
     - name: Install Ruby gems
       gem:
@@ -63,6 +64,5 @@
         - alex
         - write-good
 
-# TODO:
-# Install AWS CLI from URL
-# Download and compile vim / tmux?
+      # - name: Download and compile tmux
+      #   block:

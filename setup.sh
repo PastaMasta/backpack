@@ -4,9 +4,7 @@
 #
 # Personal environment setup script:
 # - Sets up symlinks for all my custom configs, dot files and other items between ./home and $HOME
-# - Runs ansible to handle package installs
-# - Setup tmux and vim plugins
-# - Clones other git repos next to where this repo has been cloned down
+# - Runs ansible to handle everyhting else
 #
 
 #------------------------------------------------------------------------------+
@@ -76,6 +74,7 @@ findandlink ${repohome} ${HOME}
 
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
+  export ANSIBLE_NOCOWS=1
   ansible-galaxy collection install community.general
   ansible-playbook ./setup.ansible.yaml
 else
@@ -83,7 +82,6 @@ else
 fi
 
 #------------------------------------------------------------------------------+
-# TODO: move all this to ansible?
 # Misc extra tasks
 #------------------------------------------------------------------------------+
 
