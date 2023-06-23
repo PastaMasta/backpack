@@ -68,6 +68,7 @@ case $(tmux -V) in
   *1*) ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
   *2*) ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
   *3*) ln -f -s ${repoversioned}/.tmux.conf.v3 ${repohome}/.tmux.conf ;;
+  *) ln -f -s ${repoversioned}/.tmux.conf.v3 ${repohome}/.tmux.conf ;; # Assume latest
 esac
 
 # Link everything under ./home to ${HOME}
@@ -92,16 +93,6 @@ fi
 
 # Install vim plugins if it's the first time
 [[ ! -d ~/.vim/plugged/ ]] && vim -c PlugInstall
-
-# Setup Vagrant if we're in WSL
-if [[ -n ${WSL_DISTRO_NAME} ]] ; then
-  if [[ -x $(type -p vagrant) ]] ; then
-    if ! vagrant plugin list | grep -q virtualbox_WSL2 ; then
-     vagrant plugin install virtualbox_WSL2
-     vagrant plugin repair
-    fi
-  fi
-fi
 
 # Ensure man db is setup and updated
 sudo mandb > /dev/null
