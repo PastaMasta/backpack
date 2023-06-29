@@ -74,7 +74,6 @@ findandlink ${repohome} ${HOME}
 
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
-  export ANSIBLE_NOCOWS=1
   ansible-galaxy collection install community.general
   ansible-playbook ./setup.ansible.yaml
 else

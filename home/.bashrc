@@ -43,13 +43,14 @@ alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
 alias c='clear'
 
+# Commonly edited files
 alias vimrc='${EDITOR} ~/.vimrc'
 alias bashrc='${EDITOR} ~/.bashrc'
 
 # Dir shortcuts
 alias downloads='cd ~/downloads ; tw'
 alias Downloads=downloads
-alias backpack='cd ~/backpack ; tw'
+alias backpack='cd -P ~/backpack ; tw'
 alias notes='cd ~/notes ; tw'
 alias scripts='cd ~/scripts ; tw'
 
@@ -60,6 +61,7 @@ alias it='git'
 alias gerp='grep'
 alias sl='ls'
 alias vm='mv'
+alias im='vim'
 # These don't seem to work as alias?
 function ls- {
   ls -$*

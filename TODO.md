@@ -7,6 +7,7 @@ Setup
 
 - Warn about older versions of tmux / vim or autodownload / compile ?
 - Add warning / fatal errors?
+- Make setup.sh output pretty with '✔'s ?
 
 Vim
 --------
