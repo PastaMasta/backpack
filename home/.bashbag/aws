@@ -1,5 +1,10 @@
 # .bashrc AWS functions
 
+# Add completion to aws
+if type -p aws_completer >/dev/null ; then
+  complete -C "$(type -p aws_completer)" aws
+fi
+
 # Finds the private IP of an ec2
 function ec2-get-private-ip {
   for i in $* ; do
