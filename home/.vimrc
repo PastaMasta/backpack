@@ -77,6 +77,17 @@ call plug#end()
 "------------------------------------------------------------------------------+
 
 "--------------------------------------+
+" ALE config
+"--------------------------------------+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
+let g:airline#extensions#ale#enabled=1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+
+"--------------------------------------+
 " NERDTree config
 "--------------------------------------+
 """ Start NERDTree. If a file is specified, move the cursor to its window.
@@ -130,7 +141,8 @@ inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 "--------------------------------------+
 " Create new scripts with template files if a skeleton with the same extension exists
-" Also chmod +x the file if not already +x'ed
+" i.e. vim stevet.sh will copy in ~/.vim/templates/skeleton.sh to the buffer
+" Also chmod +x the file if not already +x'ed if it's a script
 "--------------------------------------+
 if has("autocmd")
   augroup templates
@@ -144,7 +156,7 @@ if has("autocmd")
 endif
 
 "--------------------------------------+
-" Search for selected text
+" Search for selected text when pressing '#'
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
 "--------------------------------------+
 vnoremap <silent> # :<C-U>
