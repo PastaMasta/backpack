@@ -14,23 +14,14 @@ function ec2-get-private-ip {
   done
 }
 
+#
+# shell aliases for AWS CLi aliases in ~/.aws/cli/alias
+#
 # Gets a SSM param string to STDOUT
-function ssmget {
-  for i in $* ; do
-    aws ssm get-parameter --name $i | jq -r .Parameter.Value
-  done
-}
+alias ssmget="aws ssmget"
 
 # Gets a secretsmanager secret string to STDOUT
-function smget {
-  for i in $* ; do
-    aws secretsmanager get-secret-value --secret-id $i | jq -r .SecretString
-  done
-}
+alias smget="aws smget"
 
 # List all SSM params by path
-function ssmls {
-  for i in $* ; do
-    aws ssm get-parameters-by-path --recursive --path $i | jq -r '.Parameters[].Name'
-  done
-}
+alias ssmls="aws ssmls"
