@@ -2,13 +2,14 @@
 ---
 - name: Setup environment
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Install favorite OS packages
       become: true
       package:
         state: present
         name:
+          - ShellCheck
           - ansible
           - banner
           - bash-completion
@@ -23,9 +24,9 @@
           - man-pages
           - nmap
           - nmap-ncat
+          - npm
           - psmisc
           - rsync
-          - ShellCheck
           - tig
           - tree
           - vagrant
@@ -46,7 +47,7 @@
     - name: Install Ruby gems
       gem:
         state: present
-        user_install: false
+        user_install: true
         name: "{{item}}"
       loop:
         - bundler
@@ -55,6 +56,7 @@
         - rake
 
     - name: Install node.js npms
+      become: true
       npm:
         state: present
         global: true
