@@ -82,6 +82,8 @@ call plug#end()
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
+highlight link ALEVirtualTextError Error
+highlight ALEVirtualTextWarning ctermbg=lightgrey ctermfg=black
 
 let g:airline#extensions#ale#enabled=1
 let g:ale_sign_error = '>>'
