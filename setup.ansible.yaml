@@ -39,9 +39,10 @@
         executable: /usr/bin/pip3
         name: "{{item}}"
       loop:
-        - cfn-flip
-        - json2yaml
         - awscli
+        - cfn-flip
+        - checkov
+        - json2yaml
 
     - name: Install Ruby gems
       gem:
