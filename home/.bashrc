@@ -42,6 +42,8 @@ alias v='vim'
 alias vi='vim'
 alias view='vim -R' # /bin/view doesn't have syntax
 alias c='clear'
+alias grep='grep --color=auto'
+alias less='less -R'
 
 # Commonly edited files
 alias vimrc='${EDITOR} ~/.vimrc'
@@ -74,7 +76,9 @@ function sl- {
 # Functions
 #------------------------------------------------------------------------------+
 
+#--------------------------------------+
 # Returns the basename of $PWD or a given path
+#--------------------------------------+
 function basepwd {
   if [[ -n $1 ]] ; then
     basename $(realpath $1)
@@ -84,7 +88,9 @@ function basepwd {
 }
 alias bpwd=basepwd
 
+#--------------------------------------+
 # Renames a tmux window to current dir name, or given string, or basename if it's a dir
+#--------------------------------------+
 function tw {
   if [[ -n $1 ]] ; then
     if [[ -d $1 ]] ; then
@@ -97,7 +103,9 @@ function tw {
   fi
 }
 
+#--------------------------------------+
 # AIX like pretty mount, because /bin/mount is pretty much unreadable
+#--------------------------------------+
 function mounted {
   if [[ $# -ge 1 ]] ; then
     $(type -fP mount) $*
@@ -109,12 +117,16 @@ function mounted {
 }
 alias mount="mounted"
 
+#--------------------------------------+
 # Begone proxy
+#--------------------------------------+
 function noproxy {
   unset http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
 }
 
+#--------------------------------------+
 # Opens vim on the given file from $PATH or where an alias or function is defined
+#--------------------------------------+
 function vimtype {
   for i in $* ; do
     case $(type -t $i) in
@@ -143,32 +155,42 @@ function vimtype {
 }
 complete -c vimtype
 
+#--------------------------------------+
 # Find which RPM something in $PATH is from
+#--------------------------------------+
 function rpmtype {
   rpm -qf $(type -p $*)
 }
 complete -c rpmtype
 
+#--------------------------------------+
 # Changes directory to where something in $PATH is from
+#--------------------------------------+
 function cdtype {
   cd $(dirname $(type -p $*))
 }
 complete -c cdtype
 
+#--------------------------------------+
 # Runs file on a param
+#--------------------------------------+
 function filetype {
   file $(type -p $*)
 }
 complete -c filetype
 
+#--------------------------------------+
 # finds any TODO: tags in files
 # prints out $EDITOR, the file name, +linenumber and tag/comment
+#--------------------------------------+
 function todo {
   Files=${*:-*} # Defaults to all files
   grep -R -H -o -n -E "TODO:.*"  ${Files} | awk -F: '{print '"${EDITOR}"',$1,"+"$2,"#",substr($0, index($0,$3))}'
 }
 
+#--------------------------------------+
 # sorted df
+#--------------------------------------+
 function df {
   if [[ $# -le 0 ]] || [[ $1 == '-h' ]] ; then
     $(type -fP df) -h | sort -r -k 5 -i
@@ -177,8 +199,10 @@ function df {
   fi
 }
 
+#--------------------------------------+
 # TODO: make times configureable
 # Retries a command until exit 0
+#--------------------------------------+
 function retry {
   TIMES=5
   SLEEP=1
@@ -190,7 +214,9 @@ function retry {
 }
 complete -c retry
 
+#--------------------------------------+
 # Wrapper around ssh-agent to add variables to tmux
+#--------------------------------------+
 function ssh-agent-tmux {
   # Start ssh-agent if not already running
   if [[ -z ${SSH_AGENT_PID} ]] ; then
@@ -205,7 +231,10 @@ function ssh-agent-tmux {
   fi
 }
 
-# Adds ssh-keys to the agent
+#--------------------------------------+
+# Adds ssh public key files in ${sshkeys} to the agent
+# Starts agent if missing.
+#--------------------------------------+
 function ssh-keys {
 
   # Start agent if missing
