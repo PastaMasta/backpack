@@ -5,12 +5,23 @@ if type -p aws_completer >/dev/null ; then
   complete -C "$(type -p aws_completer)" aws
 fi
 
+# TODO: move to aws alias file
 # Finds the private IP of an ec2
 function ec2-get-private-ip {
   for i in $* ; do
     aws ec2 describe-instances \
       --filters "Name=tag:Name,Values=$i" "Name=instance-state-name,Values=running" \
       --query "Reservations[*].Instances[*].{Instance:PrivateIpAddress}" --output text
+  done
+}
+
+# TODO: move to aws alias file
+# RDPs into a given ec2 ID
+function ec2-rdp {
+  for target in "$@" ; do
+    if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+      aws ssm start-session --target ${target} --document-name AWS-StartPortForwardingSession --parameters "localPortNumber=55678,portNumber=3389" && mstsc.exe /v:localhost:55678
+    fi
   done
 }
 
