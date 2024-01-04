@@ -189,17 +189,6 @@ function todo {
 }
 
 #--------------------------------------+
-# sorted df
-#--------------------------------------+
-function df {
-  if [[ $# -le 0 ]] || [[ $1 == '-h' ]] ; then
-    $(type -fP df) -h | sort -r -k 5 -i
-  else
-    $(type -fP df) $*
-  fi
-}
-
-#--------------------------------------+
 # TODO: make times configureable
 # Retries a command until exit 0
 #--------------------------------------+
