@@ -19,4 +19,38 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
       | head -1
   }
 
+  #--------------------------------------+
+  # Converts a Windows Path to Unix path to where it's mounted
+  # in WSL
+  #
+  # i.e.
+  # $ win2lin_path C:\Users\someuser
+  # $ /mnt/c/users/someuser
+  #--------------------------------------+
+  function win2lin_path {
+    [[ -n ${DEBUG} ]] && set -x
+    for win_path in $* ; do
+
+      # Path should match C:\.* etc
+      if [[ ! ${win_path} =~ .:\\.* ]] ; then
+        echo "Full local Windows path required."
+        return 1
+      fi
+
+      # Pull out C:\
+      drive=$(echo ${win_path} | awk -F \\ '{print $1"\\"}')
+      # Find where C:\ is mounted
+      mountpoint=$(mount -l | grep -i -F "path=${drive}" | awk '{print $3}')
+      if [[ -z ${mountpoint} ]] ; then
+        echo "Could not find a mountpoint for ${drive}!"
+        return 1
+      fi
+
+      # mountpoint="$(echo ${win_path} | awk -F : '{print $1}'| tr '[:upper:]' '[:lower:]')"
+      path="$(echo ${win_path} | sed -e 's/^.*://' -e 's%\\%/%g')"
+      echo "${mountpoint}${path}"
+
+    done
+  }
+
 fi
