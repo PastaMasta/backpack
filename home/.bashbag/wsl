@@ -12,6 +12,9 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   # Clipboard on WSL, removing the trailing newline
   alias clip="sed -z '$ s/\n$//' | clip.exe"
 
+  # Copy current dir name to clipboard
+  alias bclip="bpwd | clip"
+
   function windows_get_dns_ip {
     powershell.exe Get-DnsClientServerAddress | awk -F '[{}]' '/IPv4.*{.+}/ {print $2}' \
       | awk -F, '{print $1}' \
