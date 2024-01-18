@@ -20,3 +20,54 @@ function l {
   fi
 }
 alias lo='git log --oneline'
+
+#
+# Converts git remote ssh and git@ URLs to https URLs
+#
+function git_remote_ssh2https {
+  for input in $* ; do
+
+    if [[ ${input} =~ ^git@github.com ]] ; then
+      github_user=$(echo $input | awk -F: '{print $2}')                                                                                                                                                                echo "https://github.com/${github_user}"
+    fi
+
+    if [[ ${input} =~ bitbucket ]] ; then
+      bitbucket_server=$(echo ${input} | awk -F[@:] '{print $3}')
+      bitbucket_path=$(echo ${input} | sed -e 's%.*:[0-9]*%scm%')
+      echo "https://${bitbucket_server}/${bitbucket_path}"
+    fi
+
+  done
+}
+
+#
+# Tries to open the remote in your browser
+# Usage:
+# git_open_repo_in_browser [ remote ]
+#
+function git_open_repo_in_browser {
+
+  # Default to origin unless told
+  if [[ $# -lt 1 ]] ; then
+    remote=origin
+  else
+    remote=$*
+  fi
+
+  remote_url=$(git remote get-url ${remote})
+
+  # Handle the different remote types
+  if [[ ${remote_url} =~ ^https://.* ]] ; then # just open it
+      URL="${remote_url}"
+  elif  [[ ${remote_url} =~ git@ ]] ; then # convert ssh URLs
+    URL="$(git_remote_ssh2https ${remote_url})"
+  else
+    echo "Not a known remote type?"
+    return 1
+  fi
+
+  # Open URL on different platforms
+  if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+    cmd.exe /C start "${URL}"
+  fi
+}
