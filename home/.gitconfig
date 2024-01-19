@@ -22,7 +22,7 @@
   kermit = commit
   undo = reset --soft HEAD~1
   vimdiff = difftool
-  open = !"bash -c '. $HOME/.bashbag/git ; git_open_repo_in_browser'"
+  open = !"bash -c '. $HOME/.bashbag/git ; git_open_repo_in_browser '"$1" "
 
 [pager]
   # diff-highlight is script provided by git that shows word-by-word diff
