@@ -36,3 +36,44 @@ alias smget="aws smget"
 
 # List all SSM params by path
 alias ssmls="aws ssmls"
+
+#
+# Interactively login to AWS SSO
+# Set AWS_SSO_SESSION to be the [sso-session somename] name in .aws/config
+# or pass in the name as $1
+#
+function awssso {
+
+  # TODO: display-popup does not inherit calling shell, proxy is not passed along
+  #tmux display-popup -E -E -b rounded -T awssso ''
+
+    session_name=${AWS_DEFAULT_SSO_SESSION}
+    [[ -n $1 ]] && session_name=$1
+
+    if [[ -z $session_name ]] ; then
+      echo "No session name specified, pass name in as $1 or export AWS_DEFAULT_SSO_SESSION with name"
+      return 1
+    fi
+
+    if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+
+      TEMPFILE=$(mktemp)
+
+      (aws sso login --no-browser --sso-session ${session_name} > "${TEMPFILE}" &)
+
+      while true ; do
+        URL="$(grep -E 'https://.*?user_code=' "${TEMPFILE}")"
+        [[ -n ${URL} ]] && break
+        sleep 0.5
+      done
+
+      echo "Code: $(grep -E '^....-....' ${TEMPFILE})"
+      cmd.exe /Q /C start "${URL}" > /dev/null 2>&1
+      wait
+
+      rm -f ${TEMPFILE}
+
+    else
+      aws sso login --no-browser --sso-session ${session_name}
+    fi
+}
