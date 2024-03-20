@@ -28,7 +28,8 @@ function git_remote_ssh2https {
   for input in $* ; do
 
     if [[ ${input} =~ ^git@github.com ]] ; then
-      github_user=$(echo $input | awk -F: '{print $2}')                                                                                                                                                                echo "https://github.com/${github_user}"
+      github_user=$(echo $input | awk -F: '{print $2}')
+      echo "https://github.com/${github_user}"
     fi
 
     if [[ ${input} =~ bitbucket ]] ; then
