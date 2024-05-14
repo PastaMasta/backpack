@@ -19,6 +19,7 @@
   helper = cache
 
 [alias]
+  yeet = push
   kermit = commit
   undo = reset --soft HEAD~1
   vimdiff = difftool
