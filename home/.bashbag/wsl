@@ -15,11 +15,9 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   # Copy current dir name to clipboard
   alias bclip="bpwd | clip"
 
+  # Pull DNS server from ipconfig (powershell too slow) and cleanup output
   function windows_get_dns_ip {
-    powershell.exe Get-DnsClientServerAddress | awk -F '[{}]' '/IPv4.*{.+}/ {print $2}' \
-      | awk -F, '{print $1}' \
-      | sort -u \
-      | head -1
+    ipconfig.exe /all | awk -F: '/^\s*DNS Servers.*:.*\..*/{print $2}' |sort -u|head -1|xargs|dos2unix
   }
 
   #--------------------------------------+
@@ -28,7 +26,8 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   #
   # i.e.
   # $ win2lin_path C:\Users\someuser
-  # $ /mnt/c/users/someuser
+  # /mnt/c/users/someuser
+  # $
   #--------------------------------------+
   function win2lin_path {
     [[ -n ${DEBUG} ]] && set -x
