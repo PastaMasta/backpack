@@ -55,6 +55,8 @@ endif
 "--------------------------------------+
 call plug#begin('~/.vim/plugged')
 
+Plug 'josa42/vim-clippy'
+
 """ airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -69,6 +71,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 """ Other syntaxies
 Plug 'jvirtanen/vim-hcl'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
@@ -77,8 +80,25 @@ call plug#end()
 "------------------------------------------------------------------------------+
 
 "--------------------------------------+
+" terraform config
+"--------------------------------------+
+" let g:terraform_fmt_on_save=1
+
+
+"--------------------------------------+
+" GitGutter config
+"--------------------------------------+
+" let g:gitgutter_sign_added = 'y'
+" let g:gitgutter_sign_modified = '👀'
+" let g:gitgutter_sign_removed = '❌'
+" let g:gitgutter_sign_removed_first_line = '^^'
+" let g:gitgutter_sign_removed_above_and_below = '{'
+" let g:gitgutter_sign_modified_removed = 'ww'
+
+"--------------------------------------+
 " ALE config
 "--------------------------------------+
+" TODO: add terraform checking / autofixing for hcl
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
@@ -88,6 +108,9 @@ highlight ALEVirtualTextWarning ctermbg=lightgrey ctermfg=black
 let g:airline#extensions#ale#enabled=1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
 
 "--------------------------------------+
 " NERDTree config
@@ -209,3 +232,8 @@ endfunction
 " TODO: Set tmux window name to file name, if not already renamed.
 " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window %".expand(%))
 "
+"
+"--------------------------------------+
+" Syntax clippy
+"--------------------------------------+
+" call clippy#show(["It looks like you're writing",&filetype,"Need a hand?"])
