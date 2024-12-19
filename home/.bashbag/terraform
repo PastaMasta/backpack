@@ -5,7 +5,7 @@ if type terraform > /dev/null ; then
   complete -C /usr/bin/terraform terraform
 
   function tffmt {
-    find ./ -name "*.tf" -name "*.tfvars" -exec terraform fmt {} \
+    find ./ -name "*.tf" -name "*.tfvars" -exec terraform fmt {} \;
   }
 
 fi
