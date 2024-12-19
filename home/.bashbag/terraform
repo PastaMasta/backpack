@@ -1,0 +1,11 @@
+# Terraform bashrc extension
+if type terraform > /dev/null ; then
+
+  alias tf='terraform'
+  complete -C /usr/bin/terraform terraform
+
+  function tffmt {
+    find ./ -name "*.tf" -name "*.tfvars" -exec terraform fmt {} \
+  }
+
+fi

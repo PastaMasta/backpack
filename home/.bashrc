@@ -48,6 +48,8 @@ alias less='less -R'
 # Commonly edited files
 alias vimrc='${EDITOR} ~/.vimrc'
 alias bashrc='${EDITOR} ~/.bashrc'
+alias gitconfig='${EDITOR} ~/.gitconfig'
+alias sshconfig='${EDITOR} ~/.ssh/config'
 
 # Dir shortcuts
 alias downloads='cd ~/downloads ; tw'
@@ -55,6 +57,7 @@ alias Downloads=downloads
 alias backpack='cd -P ~/backpack ; tw'
 alias notes='cd ~/notes ; tw'
 alias scripts='cd ~/scripts ; tw'
+alias bashbag='cd ~/.bashbag ; tw'
 
 #------------------------------------------------------------------------------+
 # Typos
@@ -107,7 +110,7 @@ function tw {
 # AIX like pretty mount, because /bin/mount is pretty much unreadable
 #--------------------------------------+
 function mounted {
-  if [[ $# -ge 1 ]] ; then
+  if [[ $# -ge 1 ]] ; then # send to real mount if any args
     $(type -fP mount) $*
   else
     echo -e "------ ---------- --- -------\n$( \
