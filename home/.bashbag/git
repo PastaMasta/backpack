@@ -24,7 +24,7 @@ function l {
 alias lo='git log --graph --all --full-history --color --oneline'
 
 #
-# Converts git remote ssh and git@ URLs to https URLs
+# Attempts to convert git remote ssh and git@ URLs to https URLs
 #
 function git_remote_ssh2https {
   for input in $* ; do
