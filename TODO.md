@@ -35,3 +35,5 @@ Git
 -------
 
 - Highlight changes in git add -p like in git diff
+- use git pre-commit https://pre-commit.com/
+  with hook scripts either here in backpack or in scripts repo?

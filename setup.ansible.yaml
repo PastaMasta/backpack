@@ -44,6 +44,8 @@
         - cfn-flip
         - checkov
         - json2yaml
+        - cf2tf
+        - pipdeptree
 
     - name: Install Ruby gems
       gem:
@@ -63,9 +65,15 @@
         global: true
         name: "{{item}}"
       loop:
-        - alex
-        - write-good
         - prettier
+
+    - name: Install go gos
+      shell:
+        state: present
+        global: true
+        name: "{{item}}"
+      loop:
+        - mvdan.cc/sh/v3/cmd/shfmt@latest
 
       # - name: Download and compile tmux
       #   block:
