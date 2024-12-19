@@ -1,6 +1,8 @@
 #
 # Git stuff
 #
+alias g='git'
+complete -C git g
 alias s='git status ; git stash list'
 alias b='git branch -avv'
 alias bn='git rev-parse --abbrev-ref HEAD' # just the branch name
@@ -19,7 +21,7 @@ function l {
     git log --graph --all --full-history --color --oneline $*
   fi
 }
-alias lo='git log --oneline'
+alias lo='git log --graph --all --full-history --color --oneline'
 
 #
 # Converts git remote ssh and git@ URLs to https URLs
@@ -42,7 +44,7 @@ function git_remote_ssh2https {
 }
 
 #
-# Tries to open the remote in your browser
+# Tries to open the git remote in your browser
 # Usage:
 # git_open_repo_in_browser [ remote ]
 #

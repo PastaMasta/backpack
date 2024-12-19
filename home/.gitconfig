@@ -32,9 +32,11 @@
   diff = /usr/share/git-core/contrib/diff-highlight | less
 
 [diff]
-        tool = vimdiff
+  tool = vimdiff
 [difftool]
-        prompt = false
+  prompt = false
 
 [pull]
   rebase = true
+[push]
+  autoSetupRemote = true
