@@ -70,7 +70,18 @@ function git_open_repo_in_browser {
   fi
 
   # Open URL on different platforms
-  if [[ -n ${WSL_DISTRO_NAME} ]] ; then
-    cmd.exe /C start "${URL}"
-  fi
+  case $(uname) in
+  Linux)
+    if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+      cmd.exe /C start "${URL}"
+    fi
+  ;;
+  Darwin)
+    open "${URL}"
+  ;;
+  *)
+    echo "unknown distro, open ${URL} yourself!"
+    return 1
+  ;;
+  esac
 }
