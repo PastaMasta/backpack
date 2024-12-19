@@ -244,3 +244,7 @@ function ssh-keys {
 
   done
 }
+
+function weather {
+  curl wttr.in
+}
