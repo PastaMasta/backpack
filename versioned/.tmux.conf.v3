@@ -4,7 +4,8 @@
 # Status lines:
 #
 set -g status-right-length 100
-set -g status-right '|#{tmux_mode_indicator}|#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} |#{ram_bg_color} 🐏: #{ram_icon} #{ram_percentage} #[bg=green]| %Y-%m-%d %H:%M|'
+# set -g status-right '|#{tmux_mode_indicator}|#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} |#{ram_bg_color} 🐏: #{ram_icon} #{ram_percentage} #[bg=green]| %Y-%m-%d %H:%M|'
+set -g status-right '|#{tmux_mode_indicator}#[bg=green]| %Y-%m-%d %H:%M|'
 
 #
 # Input changes
@@ -59,14 +60,14 @@ set -g history-limit 50000
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
 
-set -g @plugin 'PastaMasta/tmux-cpu'
-set -g @cpu_low_icon "📉"
-set -g @cpu_medium_icon "📈"
-set -g @cpu_high_icon "🔥"
-set -g @cpu_wsl_host "true"
-set -g @ram_low_icon "📉"
-set -g @ram_medium_icon "📈"
-set -g @ram_high_icon "👀"
-set -g @ram_wsl_host "true"
+# set -g @plugin 'PastaMasta/tmux-cpu'
+# set -g @cpu_low_icon "📉"
+# set -g @cpu_medium_icon "📈"
+# set -g @cpu_high_icon "🔥"
+# set -g @cpu_wsl_host "true"
+# set -g @ram_low_icon "📉"
+# set -g @ram_medium_icon "📈"
+# set -g @ram_high_icon "👀"
+# set -g @ram_wsl_host "true"
 
 run '~/.tmux/plugins/tpm/tpm'
