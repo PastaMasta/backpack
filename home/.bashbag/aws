@@ -1,6 +1,6 @@
 # .bashrc AWS functions
 
-export AWS_DEFAULT_OUTPUT=text
+export AWS_DEFAULT_OUTPUT=json
 
 # Add completion to aws
 if type -p aws_completer >/dev/null ; then

@@ -1,7 +1,7 @@
 AWS Aliases
 ===============================================
 
-Here are some extensions for the AWS CLI.
+Here are some extensions for the AWS CLI, copy into `~/.aws/cli/alias`
 
 `--output whatevet` is mostly honored
 
