@@ -39,6 +39,10 @@ set updatetime=100
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+""" Search case sensitivitiy
+set ignorecase
+set smartcase " add \C to force case sensitive
+
 "------------------------------------------------------------------------------+
 " Plugins
 "------------------------------------------------------------------------------+
