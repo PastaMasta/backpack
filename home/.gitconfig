@@ -40,3 +40,15 @@
   rebase = true
 [push]
   autoSetupRemote = true
+
+# Example to use when working in a corpo environment to keep personal and corp seperate:
+#
+# [include]
+#   path = ~/personal/backpack/home/.gitconfig
+#
+# [user]
+#   name = realname
+#   email = realname@example.com
+#
+# [includeIf "gitdir:~/personal/"]
+#   path = ~/personal/backpack/home/.gitconfig
