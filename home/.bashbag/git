@@ -85,3 +85,9 @@ function git_open_repo_in_browser {
   ;;
   esac
 }
+# Add bash complete to git open:
+[[ -s /usr/share/bash-completion/completions/git ]] && source /usr/share/bash-completion/completions/git
+_git_open() {
+    __gitcomp_nl "$(__git_remotes)"
+}
+complete -F _git_open  git-open
