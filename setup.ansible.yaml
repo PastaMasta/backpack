@@ -27,6 +27,7 @@
           - npm
           - psmisc
           - rsync
+          - terraform
           - tig
           - tree
           - vagrant
@@ -41,11 +42,12 @@
         name: "{{item}}"
       loop:
         - awscli
+        - cf2tf
         - cfn-flip
         - checkov
         - json2yaml
-        - cf2tf
         - pipdeptree
+        - yamllint
 
     - name: Install Ruby gems
       gem:
@@ -57,6 +59,7 @@
         - mdl
         - pry
         - rake
+        - rubocop
 
     - name: Install node.js npms
       become: true

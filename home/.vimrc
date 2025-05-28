@@ -105,6 +105,9 @@ call plug#end()
 " TODO: add terraform checking / autofixing for hcl
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'terraform': ['terraform'],
+\   'ruby': ['rubocop'],
+\   'yaml': ['yamlfix'],
 \}
 highlight link ALEVirtualTextError Error
 highlight ALEVirtualTextWarning ctermbg=lightgrey ctermfg=black
