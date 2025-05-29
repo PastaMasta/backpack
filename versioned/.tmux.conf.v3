@@ -1,15 +1,14 @@
+#------------------------------------------------------------------------------+
 # .tmux.conf for tmux v3.3a
+#------------------------------------------------------------------------------+
 
-#
 # Status lines:
-#
 set -g status-right-length 100
-# set -g status-right '|#{tmux_mode_indicator}|#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} |#{ram_bg_color} 🐏: #{ram_icon} #{ram_percentage} #[bg=green]| %Y-%m-%d %H:%M|'
 set -g status-right '|#{tmux_mode_indicator}#[bg=green]| %Y-%m-%d %H:%M|'
 
-#
+#------------------------------------------------------------------------------+
 # Input changes
-#
+#------------------------------------------------------------------------------+
 # Open new windows and panes in CWD
 bind '"' split-window -v -c "#{pane_current_path}"
 bind '%' split-window -h -c "#{pane_current_path}"
@@ -24,9 +23,9 @@ set -g status-keys vi
 # mouse for trackpad thumbs
 set -g mouse on
 
-#
-# Window settings
-#
+#------------------------------------------------------------------------------+
+# Window / term settings
+#------------------------------------------------------------------------------+
 # Autoshift window index left
 set -g renumber-windows on
 
@@ -39,9 +38,9 @@ set -g default-terminal screen-256color
 # auto-resize for using mulitple monitors
 set -g aggressive-resize on
 
-#
+#------------------------------------------------------------------------------+
 # Misc
-#
+#------------------------------------------------------------------------------+
 # Address vim mode switching delay (http://superuser.com/a/252717/65504)
 set -s escape-time 0
 # Increase tmux messages display duration from 750ms to 4s
@@ -51,15 +50,19 @@ set -g status-interval 5
 # Increase scrollback buffer size in lines
 set -g history-limit 50000
 
-#
+#------------------------------------------------------------------------------+
 # tmux plugin manager and plugin config
-#
+#------------------------------------------------------------------------------+
 # Install new plugins: `prefix + I`
 # Updates plugin(s): `prefix + u`
 # Remove/uninstall plugins not on the plugin list: `prefix + alt + u`
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'MunifTanjim/tmux-mode-indicator'
+#--------------------------------------+
 
+set -g @plugin 'MunifTanjim/tmux-mode-indicator'
+set -g @plugin 'jaclu/tmux-menus' # prefix + \ to open
+
+#--------------------------------------+
 # set -g @plugin 'PastaMasta/tmux-cpu'
 # set -g @cpu_low_icon "📉"
 # set -g @cpu_medium_icon "📈"
@@ -69,5 +72,8 @@ set -g @plugin 'MunifTanjim/tmux-mode-indicator'
 # set -g @ram_medium_icon "📈"
 # set -g @ram_high_icon "👀"
 # set -g @ram_wsl_host "true"
+# set -g status-right '|#{tmux_mode_indicator}|#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} |#{ram_bg_color} 🐏: #{ram_icon} #{ram_percentage} #[bg=green]| %Y-%m-%d %H:%M|'
+#--------------------------------------+
 
 run '~/.tmux/plugins/tpm/tpm'
+#------------------------------------------------------------------------------+
