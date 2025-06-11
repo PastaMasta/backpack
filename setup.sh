@@ -72,6 +72,14 @@ esac
 # Link everything under ./home to ${HOME}
 findandlink ${repohome} ${HOME}
 
+# WSL extras
+if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+  source home/.bashbag/wsl
+  downloads=$(win2lin_path $(cmd.exe /Q /C "echo %userprofile%\Downloads" 2>/dev/null)|dos2unix)
+  link ${downloads} ~/Downloads
+  link ~/Downloads ~/downloads
+fi
+
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
   ansible-galaxy collection install community.general
