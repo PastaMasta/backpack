@@ -39,7 +39,7 @@ function link {
 function findandlink {
   typeset source=$1
   typeset target=$2
-  typeset files=`find ${source} -mindepth 1 -maxdepth 1`
+  typeset files=`find ${source} -mindepth 1 -maxdepth 1 ! -name "*.swp"`
 
   for file in ${files} ; do
     filebase=`basename ${file}`
