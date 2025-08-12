@@ -44,6 +44,7 @@ alias view='vim -R' # /bin/view doesn't have syntax
 alias c='clear'
 alias grep='grep --color=auto'
 alias less='less -R'
+alias cal='cal -m'
 
 # Commonly edited files
 alias vimrc='${EDITOR} ~/.vimrc'
