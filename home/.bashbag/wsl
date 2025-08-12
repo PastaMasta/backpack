@@ -3,6 +3,9 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
 
   alias wsl=wsl.exe
 
+  # cmd
+  alias cmd=cmd.exe
+
   # Powerhell
   alias powershell=powershell.exe
 
