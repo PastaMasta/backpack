@@ -52,15 +52,19 @@ set -g history-limit 50000
 
 #------------------------------------------------------------------------------+
 # tmux plugin manager and plugin config
-#------------------------------------------------------------------------------+
+#
 # Install new plugins: `prefix + I`
-# Updates plugin(s): `prefix + u`
+# Updates plugin(s): `prefix + U`
 # Remove/uninstall plugins not on the plugin list: `prefix + alt + u`
+#------------------------------------------------------------------------------+h
 set -g @plugin 'tmux-plugins/tpm'
+
 #--------------------------------------+
 
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
 set -g @plugin 'jaclu/tmux-menus' # prefix + \ to open
+# set -g @plugin 'sainnhe/tmux-fzf' # TODO: get this working
+
 
 #--------------------------------------+
 # set -g @plugin 'PastaMasta/tmux-cpu'
