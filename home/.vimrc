@@ -76,6 +76,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 """ Other syntaxies
 Plug 'jvirtanen/vim-hcl'
 Plug 'hashivim/vim-terraform'
+" Plug 'tpope/vim-surround'
+
+""" AIs
+" Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -243,4 +247,5 @@ endfunction
 "--------------------------------------+
 " Syntax clippy
 "--------------------------------------+
+" TODO: get it working with chatgpt
 " call clippy#show(["It looks like you're writing",&filetype,"Need a hand?"])
