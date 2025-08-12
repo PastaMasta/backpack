@@ -29,6 +29,7 @@
           - rsync
           - terraform
           - tig
+          - tmux
           - tree
           - vagrant
           - vim-enhanced
