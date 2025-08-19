@@ -106,20 +106,20 @@
         - rake
         - rubocop
 
-    - name: Install node.js npms
-      become: true
-      npm:
-        state: present
-        name: "{{item}}"
-      loop:
-        - prettier
-
-    - name: Install go gos
-      shell:
-        state: present
-        name: "{{item}}"
-      loop:
-        - mvdan.cc/sh/v3/cmd/shfmt@latest
+          #    - name: Install node.js npms
+          #      become: true
+          #      npm:
+          #        state: present
+          #        name: "{{item}}"
+          #      loop:
+          #        - prettier
+          #
+          #    - name: Install go gos
+          #      shell:
+          #        state: present
+          #        name: "{{item}}"
+          #      loop:
+          #        - mvdan.cc/sh/v3/cmd/shfmt@latest
 
     - name: Install Rust cargos
       community.general.cargo:
