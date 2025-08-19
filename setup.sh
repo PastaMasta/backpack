@@ -81,7 +81,7 @@ fi
 
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
-  ansible-galaxy collection install community.general
+  [[ ! -e ~/.ansible/collections/ansible_collections/community/general ]] && ansible-galaxy collection install community.general
   ansible-playbook ./setup.ansible.yaml
 else
   echo "Ansible not installed or executable!"
