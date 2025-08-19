@@ -62,9 +62,9 @@ repoversioned="${repodir}/versioned"
 
 # Handle if we've got any files for specific package versions,
 case $(tmux -V) in
-  *1*) ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
-  *2*) ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
-  *3*) ln -f -s ${repoversioned}/.tmux.conf.v3 ${repohome}/.tmux.conf ;;
+  "tmux 1*") ln -f -s ${repoversioned}/.tmux.conf.v1 ${repohome}/.tmux.conf ;;
+  "tmux 2*") ln -f -s ${repoversioned}/.tmux.conf.v2 ${repohome}/.tmux.conf ;;
+  "tmux 3*") ln -f -s ${repoversioned}/.tmux.conf.v3 ${repohome}/.tmux.conf ;;
   *) ln -f -s ${repoversioned}/.tmux.conf.v3 ${repohome}/.tmux.conf ;; # Assume latest
 esac
 
