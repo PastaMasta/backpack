@@ -36,7 +36,7 @@ ${HOME}/.ssh/id_github_pastamasta
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias ls='ls -A --color=auto -h --time-style=long-iso'
+alias ls='ls --color=auto -h --time-style=long-iso'
 alias whence='type -p'
 alias v='vim'
 alias vi='vim'
