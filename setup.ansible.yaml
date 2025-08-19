@@ -3,44 +3,82 @@
 - name: Setup environment
   hosts: localhost
   gather_facts: true
+  vars:
+    packages:
+      Fedora:
+        - ansible
+        - banner
+        - bash-completion
+        - cowsay
+        - curl
+        - dos2unix
+        - figlet
+        - findutils
+        - git
+        - iotop
+        - jq
+        - lsof
+        - man-db
+        - man-pages
+        - nmap
+        - nmap-ncat
+        - npm
+        - psmisc
+        - rsync
+        - shellcheck
+        - terraform
+        - tig
+        - tmux
+        - tree
+        - vagrant
+        - wget
+        - xpanes
+
+      Ubuntu:
+        - ansible
+        - bash-completion
+        - cowsay
+        - curl
+        - dos2unix
+        - figlet
+        - findutils
+        - git
+        - iotop
+        - jq
+        - plocate
+        - lsof
+        - man-db
+        - ncat
+        - nmap
+        - npm
+        - psmisc
+        - python3-pip
+        - rsync
+        - shellcheck
+        - sysvbanner
+        - terraform
+        - tig
+        - tmux
+        - tmux-xpanes
+        - tree
+        - vagrant
+        - wget
+        - ruby
+        - ruby-rubygems
+
   tasks:
     - name: Install favorite OS packages
       become: true
       package:
         state: present
-        name:
-          - ShellCheck
-          - ansible
-          - banner
-          - bash-completion
-          - cowsay
-          - curl
-          - figlet
-          - findutils
-          - git
-          - jq
-          - lsof
-          - man-db
-          - man-pages
-          - nmap
-          - nmap-ncat
-          - npm
-          - psmisc
-          - rsync
-          - terraform
-          - tig
-          - tmux
-          - tree
-          - vagrant
-          - vim-enhanced
-          - wget
-          - xpanes
+        name: "{{ packages[ansible_distribution] }}"
 
     - name: Install python3 pips
       ansible.builtin.pip:
         state: present
         executable: /usr/bin/pip3
         name: "{{item}}"
+        extra_args: "--user"
       loop:
         - awscli
         - cf2tf
@@ -48,10 +86,11 @@
         - checkov
         - json2yaml
         - pipdeptree
+        - pre-commit
         - yamllint
 
     - name: Install Ruby gems
-      gem:
+      community.general.gem:
         state: present
         user_install: true
         name: "{{item}}"
