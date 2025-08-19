@@ -12,7 +12,7 @@ for i in ~/.bashbag/* ; do
   source $i
 done
 
-export PATH=~/bin/:~/.local/bin/:~/scripts/:${PATH}
+export PATH=~/bin/:~/.local/bin/:~/scripts/:~/.cargo/bin:${PATH}
 
 # Shell settings
 set -o vi

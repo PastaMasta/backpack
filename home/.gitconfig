@@ -6,6 +6,7 @@
 
 [core]
   excludesfile = ~/.gitignore
+  pager = diffr | less -R
 
 [color]
   diff = auto
@@ -25,11 +26,8 @@
   vimdiff = difftool
   open = !"bash -c '. $HOME/.bashbag/git ; git_open_repo_in_browser '"$1" "
 
-[pager]
-  # diff-highlight is script provided by git that shows word-by-word diff
-  log  = /usr/share/git-core/contrib/diff-highlight | less
-  show = /usr/share/git-core/contrib/diff-highlight | less
-  diff = /usr/share/git-core/contrib/diff-highlight | less
+[interactive]
+  diffFilter = diffr
 
 [diff]
   tool = vimdiff

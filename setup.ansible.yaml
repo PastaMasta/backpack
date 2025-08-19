@@ -39,6 +39,7 @@
         - bash-completion
         - cowsay
         - curl
+        - cargo
         - dos2unix
         - figlet
         - findutils
@@ -113,10 +114,12 @@
     - name: Install go gos
       shell:
         state: present
-        global: true
         name: "{{item}}"
       loop:
         - mvdan.cc/sh/v3/cmd/shfmt@latest
 
-      # - name: Download and compile tmux
-      #   block:
+    - name: Install Rust cargos
+      community.general.cargo:
+        state: present
+        name:
+          - diffr
