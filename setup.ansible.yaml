@@ -105,7 +105,6 @@
       become: true
       npm:
         state: present
-        global: true
         name: "{{item}}"
       loop:
         - prettier
