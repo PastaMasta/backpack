@@ -23,14 +23,13 @@ function link {
     if [[ $(readlink ${target}) == ${source} ]] ; then # nothing to do
       [[ -n ${DEBUG} ]] && echo "${target} is already linked to: $(readlink ${target})"
     elif readlink ${target} | grep -q backpack-local ; then # Linked to local copy
-      echo "${target} is already linked to local version: $(readlink ${target})"
+      echo "INFO: ${target} is already linked to local version: $(readlink ${target})"
     else # Linked elsewhere
-      echo "${target} is linked to $(readlink ${target})"
-      ln -s ${source} ${target} -f -i
+      echo "INFO: ${target} is linked to $(readlink ${target})"
     fi
 
   else # If it's already there but not a link
-    echo "${target} already exists!"
+    echo "Warning: ${target} already exists as a file!"
     ln -s ${source} ${target} -f -i
   fi
 }
