@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+#
+# Ansible playbook to handle package installs
+#
 ---
 - name: Setup environment
   hosts: localhost
@@ -37,24 +40,28 @@
       Ubuntu:
         - ansible
         - bash-completion
+        - cargo
         - cowsay
         - curl
-        - cargo
         - dos2unix
         - figlet
         - findutils
         - git
+        - golang-go
         - iotop
         - jq
-        - plocate
         - lsof
         - man-db
         - ncat
         - nmap
         - npm
+        - plocate
         - psmisc
         - python3-pip
         - rsync
+        - ruby
+        - ruby-dev
+        - ruby-rubygems
         - shellcheck
         - sysvbanner
         - terraform
@@ -64,8 +71,6 @@
         - tree
         - vagrant
         - wget
-        - ruby
-        - ruby-rubygems
 
   tasks:
     - name: Install favorite OS packages
