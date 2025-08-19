@@ -78,24 +78,23 @@
       ansible.builtin.pip:
         state: present
         executable: /usr/bin/pip3
-        name: "{{item}}"
         extra_args: "--user"
-      loop:
-        - awscli
-        - cf2tf
-        - cfn-flip
-        - checkov
-        - json2yaml
-        - pipdeptree
-        - pre-commit
-        - yamllint
+        name:
+          - awscli
+          - cf2tf
+          - cfn-flip
+          - checkov
+          - json2yaml
+          - pipdeptree
+          - pre-commit
+          - yamllint
 
     - name: Install Ruby gems
       community.general.gem:
         state: present
         user_install: true
         name: "{{item}}"
-      loop:
+      loop: # gem module name: only supports strings, not a list ☹️
         - bundler
         - mdl
         - pry
