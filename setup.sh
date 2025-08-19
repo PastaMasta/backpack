@@ -57,7 +57,7 @@ function findandlink {
 #------------------------------------------------------------------------------+
 
 # full path to the repo so symlinks aren't relative
-repodir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+repodir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 repohome="${repodir}/home"
 repoversioned="${repodir}/versioned"
 
