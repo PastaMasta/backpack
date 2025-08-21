@@ -38,6 +38,9 @@ set -g default-terminal screen-256color
 # auto-resize for using mulitple monitors
 set -g aggressive-resize on
 
+# Highlight the current tab
+set-window-option -g window-status-current-style bg=yellow
+
 #------------------------------------------------------------------------------+
 # Misc
 #------------------------------------------------------------------------------+
