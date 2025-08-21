@@ -63,8 +63,7 @@ set -g @plugin 'tmux-plugins/tpm'
 
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
 set -g @plugin 'jaclu/tmux-menus' # prefix + \ to open
-# set -g @plugin 'sainnhe/tmux-fzf' # TODO: get this working
-
+set -g @plugin 'sainnhe/tmux-fzf' # prefix + F to open
 
 #--------------------------------------+
 # set -g @plugin 'PastaMasta/tmux-cpu'
