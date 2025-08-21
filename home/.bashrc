@@ -164,12 +164,24 @@ function vimtype {
 complete -c vimtype
 
 #--------------------------------------+
-# Find which RPM something in $PATH is from
+# Find which package something in $PATH is from
 #--------------------------------------+
-function rpmtype {
-  rpm -qf $(type -p $*)
+function pkgtype {
+  if [[ -x $(type -p rpm) ]] ; then
+    echo "rpm:"
+   rpm -qf $(type -p $*)
+  fi
+  if [[ -x $(type -p dpkg ) ]] ; then
+    echo "dpkg:"
+    dpkg -S $(type -p $*)
+  fi
+  if [[ -x $(type -p gem ) ]] ; then
+    echo "gem:"
+    gem which $(type -p $*)
+  fi
 }
 complete -c rpmtype
+alias rpmtype=pkgtype
 
 #--------------------------------------+
 # Changes directory to where something in $PATH is from
