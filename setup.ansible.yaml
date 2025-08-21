@@ -39,17 +39,24 @@
 
       Ubuntu:
         - ansible
+        - apt-transport-https
+        - automake
         - bash-completion
+        - ca-certificates
         - cargo
         - cowsay
+        - curl
         - curl
         - dos2unix
         - figlet
         - findutils
         - git
+        - gnupg
         - golang-go
         - iotop
         - jq
+        - libevent-dev
+        - libevent-dev
         - lsof
         - man-db
         - ncat
@@ -71,6 +78,7 @@
         - tree
         - vagrant
         - wget
+        - yacc
 
   tasks:
     - name: Install favorite OS packages
