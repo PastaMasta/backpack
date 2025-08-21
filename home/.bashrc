@@ -94,6 +94,10 @@ alias bpwd=basepwd
 
 #--------------------------------------+
 # Renames a tmux window to current dir name, or given string, or basename if it's a dir
+# tw => backpack
+# tw .. ==> root
+# tw ../.. ==> /
+# tw dave ==> dave
 #--------------------------------------+
 function tw {
   if [[ -n $1 ]] ; then
