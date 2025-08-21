@@ -114,12 +114,20 @@
           #      loop:
           #        - prettier
           #
-          #    - name: Install go gos
-          #      shell:
-          #        state: present
-          #        name: "{{item}}"
-          #      loop:
-          #        - mvdan.cc/sh/v3/cmd/shfmt@latest
+
+    - name: Install go packages
+      ansible.builtin.command:
+        cmd: go install {{ item }}
+      environment:
+        GOPATH: "{{ ansible_env.HOME }}/go"
+        PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/go/bin"
+      register: go_install_result
+      changed_when: "'downloading' in go_install_result.stderr or 'go: finding' in go_install_result.stderr"
+      failed_when: go_install_result.rc != 0
+      loop:
+        - github.com/terraform-docs/terraform-docs@v0.19.0
+        - mvdan.cc/sh/v3/cmd/shfmt@latest
+        - github.com/warrensbox/terraform-switcher@v1.5.0
 
     - name: Install Rust cargos
       community.general.cargo:

@@ -12,7 +12,7 @@ for i in ~/.bashbag/* ; do
   source $i
 done
 
-export PATH=~/bin/:~/.local/bin/:~/scripts/:~/.cargo/bin:${PATH}
+export PATH=~/bin/:~/.local/bin/:~/scripts/:~/.cargo/bin:~/go/bin:~/.local/share/gem/ruby/3.0.0/bin:${PATH}
 
 # Shell settings
 set -o vi
