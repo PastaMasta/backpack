@@ -12,12 +12,14 @@
         - ansible
         - banner
         - bash-completion
+        - cargo
         - cowsay
         - curl
         - dos2unix
         - figlet
         - findutils
         - git
+        - golang
         - iotop
         - jq
         - lsof
@@ -28,6 +30,7 @@
         - npm
         - psmisc
         - rsync
+        - ruby-devel
         - shellcheck
         - terraform
         - tig
@@ -83,6 +86,7 @@
   tasks:
     - name: Install favorite OS packages
       become: true
+      ignore_errors: true
       package:
         state: present
         name: "{{ packages[ansible_distribution] }}"
