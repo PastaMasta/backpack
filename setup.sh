@@ -82,7 +82,8 @@ fi
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
   [[ ! -e ~/.ansible/collections/ansible_collections/community/general ]] && ansible-galaxy collection install community.general
-  ansible-playbook ./setup.ansible.yaml --ask-become-pass
+  [[ ! "${UID}" -eq "0" ]] && AskBecomePass="--ask-become-pass"
+  ansible-playbook ./setup.ansible.yaml ${AskBecomePass}
 else
   echo "Ansible not installed or executable!"
 fi
