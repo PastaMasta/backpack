@@ -22,7 +22,7 @@ export PS2='>>'
 shopt -s extglob
 
 # The one true editor
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # SSH keys to add with ssh-keys()
 sshkeys="${sshkeys}

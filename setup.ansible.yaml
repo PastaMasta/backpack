@@ -65,6 +65,7 @@
         - ncat
         - nmap
         - npm
+        - nvim
         - plocate
         - psmisc
         - python3-pip
