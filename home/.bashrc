@@ -30,6 +30,11 @@ ${HOME}/.ssh/id_git
 ${HOME}/.ssh/id_github_pastamasta
 "
 
+# Fuzz it up
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias zfz=fzf
+FZF_DEFAULT_OPTS="--tmux"
+
 #------------------------------------------------------------------------------+
 # Aliases
 #------------------------------------------------------------------------------+
