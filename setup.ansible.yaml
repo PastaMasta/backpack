@@ -50,6 +50,7 @@
         - cowsay
         - curl
         - curl
+        - docker.io
         - dos2unix
         - figlet
         - findutils
