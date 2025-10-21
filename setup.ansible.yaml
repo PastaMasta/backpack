@@ -101,7 +101,6 @@
         executable: /usr/bin/pip3
         extra_args: "--user"
         name:
-          - awscli
           - cf2tf
           - cfn-flip
           - checkov
