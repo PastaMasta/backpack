@@ -50,6 +50,7 @@ alias c='clear'
 alias grep='grep --color=auto'
 alias less='less -R'
 alias cal='cal -m'
+alias ck="pre-commit run --all-files"
 
 # Commonly edited files
 alias vimrc='${EDITOR} ~/.vimrc'

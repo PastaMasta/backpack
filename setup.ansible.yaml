@@ -107,6 +107,7 @@
           - pipdeptree
           - pre-commit
           - yamllint
+          - yamlfix
 
     - name: Install Ruby gems
       community.general.gem:
