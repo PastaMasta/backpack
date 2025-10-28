@@ -1,0 +1,5 @@
+# Vagrant configs
+
+if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+  export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
+fi
