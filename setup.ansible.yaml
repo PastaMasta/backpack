@@ -12,6 +12,7 @@
         - ansible
         - banner
         - bash-completion
+        - btop
         - cargo
         - cowsay
         - curl
@@ -45,6 +46,7 @@
         - apt-transport-https
         - automake
         - bash-completion
+        - btop
         - ca-certificates
         - cargo
         - cowsay
