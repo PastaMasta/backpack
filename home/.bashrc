@@ -241,8 +241,8 @@ function ssh-agent-tmux {
 
   # Add to tmux if we're in it
   if [[ -n ${TMUX} ]] ; then
-    tmux set-environment SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
-    tmux set-environment SSH_AGENT_PID ${SSH_AGENT_PID}
+    tmux set-environment -g SSH_AUTH_SOCK ${SSH_AUTH_SOCK}
+    tmux set-environment -g SSH_AGENT_PID ${SSH_AGENT_PID}
   fi
 }
 
