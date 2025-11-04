@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------+
-# .tmux.conf for tmux v3.3a
+# .tmux.conf for tmux v3.3a+
 #------------------------------------------------------------------------------+
 
 # Status lines:
@@ -59,13 +59,13 @@ set -g history-limit 50000
 # Install new plugins: `prefix + I`
 # Updates plugin(s): `prefix + U`
 # Remove/uninstall plugins not on the plugin list: `prefix + alt + u`
-#------------------------------------------------------------------------------+h
+#------------------------------------------------------------------------------+
 set -g @plugin 'tmux-plugins/tpm'
 
 #--------------------------------------+
 
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
-set -g @plugin 'jaclu/tmux-menus' # prefix + \ to open
+set -g @plugin 'jaclu/tmux-menus' # prefix + \ to open - stuck in a loop in helpers_minimal.sh when using a 'next' version tag
 set -g @plugin 'sainnhe/tmux-fzf' # prefix + F to open
 
 #--------------------------------------+

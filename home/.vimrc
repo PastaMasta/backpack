@@ -59,8 +59,6 @@ endif
 "--------------------------------------+
 call plug#begin('~/.vim/plugged')
 
-Plug 'josa42/vim-clippy'
-
 """ airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -80,6 +78,7 @@ Plug 'hashivim/vim-terraform'
 
 """ AIs
 " Plug 'github/copilot.vim'
+Plug 'josa42/vim-clippy'
 
 call plug#end()
 

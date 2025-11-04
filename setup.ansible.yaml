@@ -42,6 +42,7 @@
         - xpanes
 
       Ubuntu:
+        - ack
         - ansible
         - apt-transport-https
         - automake
@@ -150,3 +151,8 @@
         state: present
         name:
           - diffr
+
+
+# Install manually built tools:
+# latest tmux
+# fzf
