@@ -20,6 +20,7 @@ set +H
 export PS1='[\u@\h:$?]\$ ' # [user@host:exitcode]$
 export PS2='>>'
 shopt -s extglob
+IGNOREEOF=1 # Ask before exit
 
 # The one true editor
 export EDITOR="nvim"
