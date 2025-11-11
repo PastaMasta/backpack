@@ -87,4 +87,4 @@ run '~/.tmux/plugins/tpm/tpm'
 #------------------------------------------------------------------------------+
 
 # Bens sessioniser - prefix + S to use fzf
-bind -r S run-shell "tmux neww ~/.local/bin/sessioniser"
+bind -r s run-shell "tmux neww ~/.local/bin/sessioniser"
