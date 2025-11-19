@@ -24,6 +24,14 @@ set -g status-keys vi
 set -g mouse on
 
 #------------------------------------------------------------------------------+
+# Session settings
+#------------------------------------------------------------------------------+
+# Sessioniser - prefix + S to use fzf
+bind -r s run-shell "tmux neww ~/.local/bin/sessioniser"
+# Switch to next session on exit instead of exiting tmux
+set -g detach-on-destroy off
+
+#------------------------------------------------------------------------------+
 # Window / term settings
 #------------------------------------------------------------------------------+
 # Autoshift window index left
@@ -54,15 +62,15 @@ set -g status-interval 5
 set -g history-limit 50000
 
 #------------------------------------------------------------------------------+
+# Plugins
+#------------------------------------------------------------------------------+
 # tmux plugin manager and plugin config
 #
 # Install new plugins: `prefix + I`
 # Updates plugin(s): `prefix + U`
 # Remove/uninstall plugins not on the plugin list: `prefix + alt + u`
-#------------------------------------------------------------------------------+
 set -g @plugin 'tmux-plugins/tpm'
-
-#--------------------------------------+
+#------------------------------------------------------------------------------+
 
 set -g @plugin 'MunifTanjim/tmux-mode-indicator'
 set -g @plugin 'jaclu/tmux-menus' # prefix + \ to open - stuck in a loop in helpers_minimal.sh when using a 'next' version tag
@@ -82,9 +90,3 @@ set -g @plugin 'sainnhe/tmux-fzf' # prefix + F to open
 #--------------------------------------+
 
 run '~/.tmux/plugins/tpm/tpm'
-#------------------------------------------------------------------------------+
-# Extras
-#------------------------------------------------------------------------------+
-
-# Bens sessioniser - prefix + S to use fzf
-bind -r s run-shell "tmux neww ~/.local/bin/sessioniser"
