@@ -91,3 +91,6 @@ _git_open() {
     __gitcomp_nl "$(__git_remotes)"
 }
 complete -F _git_open  git-open
+
+# Setup github cli completion if it's there
+[[ -x $(type -p gh) ]] && eval "$(gh completion -s bash)"
