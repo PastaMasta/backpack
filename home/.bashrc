@@ -39,10 +39,12 @@ FZF_DEFAULT_OPTS="--tmux"
 #------------------------------------------------------------------------------+
 # Aliases
 #------------------------------------------------------------------------------+
+alias ..='cd ..'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls --color=auto -h --time-style=long-iso'
+alias ll='ls'
 alias whence='type -p'
 alias v='vim'
 alias vi='vim'
