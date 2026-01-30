@@ -23,7 +23,7 @@ highlight CursorLine   cterm=NONE ctermbg=darkgrey
 set hlsearch
 
 """ Number highlighting
-set number
+set relativenumber
 highlight LineNr ctermfg=0 ctermbg=blue
 
 """ Inputs
@@ -205,12 +205,12 @@ vnoremap <silent> # :<C-U>
 " terminal
 "--------------------------------------+
 function! s:copy()
-  set nonumber
+  set norelativenumber
   GitGutterDisable
   ALEDisable
 endfunction
 function! s:nocopy()
-  set number
+  set relativenumber
   GitGutterEnable
   ALEEnable
 endfunction
