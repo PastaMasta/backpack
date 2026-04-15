@@ -1,0 +1,43 @@
+# .bashrc jira helpers
+
+#
+# Exports to work with:
+#
+# Base URL to jira instance
+# export JIRA_URL="https://jira.example.com"
+#
+# List of jira project IDs to care about:
+# export JIRA_PROJECTS="PROJECT OTHERPROJECT"
+#
+
+if [[ -z ${JIRA_URL} ]] ; then
+  echo "JIRA_URL not set!"
+fi
+
+function jira {
+  browseurl="${JIRA_URL}/browse"
+  # TODO: clevererer way to handle options, or just move to a real cli tool
+  [[ $1 == "open" ]] && shift
+  [[ $1 == "o" ]] && shift
+
+  issue=$1
+
+  if [[ -z ${issue} ]] ; then # non specified, try to find
+    if [[ -d .git ]] ; then # Try and find from branch name
+      echo git
+    else
+      echo "u w0t m8"
+      return 1
+    fi
+  fi
+
+  # Go open it
+  if [[ -n ${issue} ]] ; then
+    open "${browseurl}/${issue}"
+  else
+    echo "no issue?"
+    return 1
+  fi
+}
+alias j="jira"
+alias jo="jira open"
