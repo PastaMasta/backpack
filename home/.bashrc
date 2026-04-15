@@ -147,7 +147,6 @@ function noproxy {
 function vimtype {
   for i in $* ; do
     case $(type -t $i) in
-      file) ${EDITOR} $(type -p $i) ;;
       alias) # Search bashrc files for the definition
         sources="
         ${HOME}/.bashrc
@@ -166,6 +165,7 @@ function vimtype {
         shopt -u extdebug
         ${EDITOR} ${file} +${line}
       ;;
+      file) ${EDITOR} $(type -p $i) ;;
       *) type $i ;;
     esac
   done
