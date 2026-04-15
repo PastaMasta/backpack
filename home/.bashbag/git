@@ -69,21 +69,7 @@ function git_open_repo_in_browser {
     return 1
   fi
 
-  # Open URL on different platforms
-  case $(uname) in
-  Linux)
-    if [[ -n ${WSL_DISTRO_NAME} ]] ; then
-      cmd.exe /C start "${URL}"
-    fi
-  ;;
-  Darwin)
-    open "${URL}"
-  ;;
-  *)
-    echo "unknown distro, open ${URL} yourself!"
-    return 1
-  ;;
-  esac
+  open "${URL}"
 }
 # Add bash complete to git open:
 [[ -s /usr/share/bash-completion/completions/git ]] && source /usr/share/bash-completion/completions/git

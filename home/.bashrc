@@ -274,3 +274,29 @@ function ssh-keys {
 function weather {
   curl wttr.in
 }
+
+#--------------------------------------+
+# General function to open things in desktop apps
+#--------------------------------------+
+function open {
+  [[ $# -lt 1 ]] && return 1
+  input="$*"
+
+  # Open URL on different platforms
+  case $(uname) in
+  Linux)
+    if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+      cmd.exe /C start "${input}"
+    else
+      /bin/open "${input}"
+    fi
+  ;;
+  Darwin)
+    /bin/open "${input}"
+  ;;
+  *)
+    echo "unknown distro, open ${input} yourself!"
+    return 1
+  ;;
+  esac
+}
