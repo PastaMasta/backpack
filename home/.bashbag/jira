@@ -24,7 +24,11 @@ function jira {
 
   if [[ -z ${issue} ]] ; then # non specified, try to find
     if [[ -d .git ]] ; then # Try and find from branch name
-      echo git
+      git_head=$(git rev-parse --abbrev-ref HEAD)
+      for project in ${JIRA_PROJECTS} ; do
+        issue=$(echo ${git_head} | awk -F\- 'BEGIN{IGNORECASE=1};/'"${project}"'-\n*/{print $1 "-" $2}')
+        [[ -z ${issue} ]] && break
+      done
     else
       echo "u w0t m8"
       return 1
