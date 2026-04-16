@@ -24,7 +24,7 @@
   kermit = commit
   undo = reset --soft HEAD~1
   vimdiff = difftool
-  open = !"bash -c '. $HOME/.bashbag/git ; git_open_repo_in_browser '"$1" "
+  open = !"bash -c '. $HOME/.bashrc ; git_open_repo_in_browser '"$1" "
 
 [interactive]
   diffFilter = diffr
