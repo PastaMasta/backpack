@@ -105,11 +105,12 @@
           - cf2tf
           - cfn-flip
           - checkov
+          - ipdb
           - json2yaml
           - pipdeptree
           - pre-commit
-          - yamllint
           - yamlfix
+          - yamllint
 
     - name: Install Ruby gems
       community.general.gem:

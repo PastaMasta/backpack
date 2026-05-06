@@ -1,13 +1,13 @@
 #! /usr/bin/env python3
 
-import pdb
 import argparse
 from halo import Halo
 import os
 import logging
 
 def run():
-    pdb.set_trace()
+    import ipdb; ipdb.set_trace()
+    print ("hello")
     return "hello"
 
 if __name__ == "__main__":
@@ -32,4 +32,5 @@ if __name__ == "__main__":
         with Halo(text='', spinner='line'):
             results = run()
 
-    pdb.set_trace()
+    import ipdb; ipdb.set_trace()
+    print ("bye")
