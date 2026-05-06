@@ -226,6 +226,14 @@ command! NoPaste :set nopaste
 command! NOPASTE :set nopaste
 
 "--------------------------------------+
+" Auto fix things
+"--------------------------------------+
+function! s:fix()
+  ALEFix
+endfunction
+command! Fix :fix
+
+"--------------------------------------+
 " Automatic paste-mode when pasting
 " https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 "--------------------------------------+
