@@ -1,14 +1,20 @@
 # .gitconfig
 
+#
 # Uses personal git config as a base, then overwites with site-specific
 # BUT - if the target git repo is inside ~/personal/ it gets re-overwritten back with my personal config name/email
 # Quite neat actually
+#
 [include]
   path = ~/personal/backpack/home/.gitconfig
 
+###############################################################################
+# Local overwrites
 [user]
   name = REDACTED
   email = REDACTED
+###############################################################################
 
+# Re-overwrite if back in personal
 [includeIf "gitdir:~/personal/"]
   path = ~/personal/backpack/home/.gitconfig

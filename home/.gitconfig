@@ -18,6 +18,14 @@
 
 [credential]
   helper = cache
+# Use gh cli for github auth:
+# $ gh auth login
+[credential "https://github.com"]
+        helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+        helper = !/usr/bin/gh auth git-credential
+[url "https://github.com/"]
+        insteadOf = git@github.com:
 
 [alias]
   yeet = push
@@ -31,22 +39,29 @@
 
 [diff]
   tool = vimdiff
+
 [difftool]
   prompt = false
 
 [pull]
   rebase = true
+
 [push]
   autoSetupRemote = true
 
+#
 # Example to use when working in a corpo environment to keep personal and corp seperate:
 #
 # [include]
 #   path = ~/personal/backpack/home/.gitconfig
 #
+# ###############################################################################
+# # Local overwrites
 # [user]
 #   name = realname
 #   email = realname@example.com
+# ###############################################################################
 #
+# # Re-overwrite if back in personal
 # [includeIf "gitdir:~/personal/"]
 #   path = ~/personal/backpack/home/.gitconfig
