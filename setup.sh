@@ -71,14 +71,6 @@ esac
 # Link everything under ./home to ${HOME}
 findandlink ${repohome} ${HOME}
 
-# WSL extras
-if [[ -n ${WSL_DISTRO_NAME} ]] ; then
-  source home/.bashbag/wsl
-  downloads=$(win2lin_path $(cmd.exe /Q /C "echo %userprofile%\Downloads" 2>/dev/null)|dos2unix)
-  link ${downloads} ~/Downloads
-  link ~/Downloads ~/downloads
-fi
-
 # Install all the packages!
 if [[ -x $(type -p ansible-playbook) ]] ; then
   [[ ! -e ~/.ansible/collections/ansible_collections/community/general ]] && ansible-galaxy collection install community.general
@@ -92,6 +84,14 @@ fi
 #------------------------------------------------------------------------------+
 # Misc extra tasks
 #------------------------------------------------------------------------------+
+
+# WSL extras
+if [[ -n ${WSL_DISTRO_NAME} ]] ; then
+  source home/.bashbag/wsl
+  downloads=$(win2lin_path $(cmd.exe /Q /C "echo %userprofile%\Downloads" 2>/dev/null)|dos2unix)
+  link ${downloads} ~/Downloads
+  link ~/Downloads ~/downloads
+fi
 
 # tmux plugins
 if [[ ! -d ~/.tmux/plugins/tpm ]] ; then
