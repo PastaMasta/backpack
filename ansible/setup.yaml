@@ -15,6 +15,7 @@
 
     - name: Add any extra repos
       become: true
+      become_exe: "sudo.ws" # work around for https://github.com/ansible/ansible/pull/86964
       ignore_errors: true
       apt_repository:
         repo: "{{ item }}"
@@ -23,6 +24,7 @@
 
     - name: Install OS packages
       become: true
+      become_exe: "sudo.ws" # work around for https://github.com/ansible/ansible/pull/86964
       ignore_errors: true
       package:
         state: present
