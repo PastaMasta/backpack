@@ -83,7 +83,8 @@ fi
 if [[ -x $(type -p ansible-playbook) ]] ; then
   [[ ! -e ~/.ansible/collections/ansible_collections/community/general ]] && ansible-galaxy collection install community.general
   [[ ! "${UID}" -eq "0" ]] && AskBecomePass="--ask-become-pass"
-  ansible-playbook ./setup.ansible.yaml ${AskBecomePass}
+  export ANSIBLE_NOCOWS=1
+  ansible-playbook ./ansible/setup.yaml ${AskBecomePass}
 else
   echo "Ansible not installed or executable!"
 fi

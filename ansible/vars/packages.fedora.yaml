@@ -1,0 +1,34 @@
+---
+# OS packages for Fedora
+os_packages:
+  - ansible
+  - banner
+  - bash-completion
+  - btop
+  - cargo
+  - cowsay
+  - curl
+  - dos2unix
+  - figlet
+  - findutils
+  - git
+  - golang
+  - iotop
+  - jq
+  - lsof
+  - man-db
+  - man-pages
+  - nmap
+  - nmap-ncat
+  - npm
+  - psmisc
+  - rsync
+  - ruby-devel
+  - shellcheck
+  - terraform
+  - tig
+  - tmux
+  - tree
+  - vagrant
+  - wget
+  - xpanes

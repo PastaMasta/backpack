@@ -1,0 +1,5 @@
+---
+pipx_packages:
+  - cf2tf
+  - cfn-flip
+  - checkov

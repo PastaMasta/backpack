@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+#
+# Ansible playbook to handle package installs and anything more complex than a shell script
+#
+---
+- name: Setup environment
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - ./pips.yaml
+  tasks:
+
+    - name: Load distro vars for {{ ansible_facts["distribution"] | lower }}
+      include_vars: vars/packages.{{ ansible_facts["distribution"] | lower }}.yaml
+
+    - name: Add any extra repos
+      become: true
+      ignore_errors: true
+      apt_repository:
+        repo: "{{ item }}"
+      loop: "{{apt_repos}}"
+      when: ansible_facts["os_family"] == "Debian"
+
+    - name: Install OS packages
+      become: true
+      ignore_errors: true
+      package:
+        state: present
+        name: "{{ os_packages }}"
+
+    - name: Install python pips with pipx
+      community.general.pipx:
+        name: "{{ item }}"
+        state: latest
+      with_items: "{{ pipx_packages }}"

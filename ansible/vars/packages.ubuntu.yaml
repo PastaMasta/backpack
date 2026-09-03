@@ -1,0 +1,64 @@
+---
+# OS packages for Ubuntu (deduplicated, corrected)
+apt_repos:
+  - ppa:greymd/tmux-xpanes
+
+os_packages:
+  # - plocate
+  # - tmux-xpanes
+  - ack
+  - ansible
+  - apt-transport-https
+  - automake
+  - bash-completion
+  - btop
+  - bundler
+  - ca-certificates
+  - cargo
+  - curl
+  - diffr
+  - docker.io
+  - dos2unix
+  - figlet
+  - findutils
+  - fzf
+  - git
+  - gnupg
+  - golang-go
+  - iotop
+  - jq
+  - json2yaml
+  - libevent-dev
+  - lsof
+  - man-db
+  - ncat
+  - neovim
+  - nmap
+  - npm
+  - pipx
+  - pre-commit
+  - pry
+  - psmisc
+  - python3-ipdb
+  - python3-pip
+  - python3-pip
+  - python3-pipdeptree
+  - python3-venv
+  - python3-yamlfix
+  - rake
+  - rsync
+  - rubocop
+  - ruby
+  - ruby-dev
+  - ruby-rubygems
+  - shellcheck
+  - software-properties-common
+  - sysvbanner
+  - terraform
+  - tig
+  - tmux
+  - tree
+  - vagrant
+  - wget
+  - yacc
+  - yamllint
