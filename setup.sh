@@ -91,6 +91,7 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   downloads=$(win2lin_path $(cmd.exe /Q /C "echo %userprofile%\Downloads" 2>/dev/null)|dos2unix)
   link ${downloads} ~/Downloads
   link ~/Downloads ~/downloads
+  vagrant plugin list | grep -q virtualbox_WSL2 || vagrant plugin install virtualbox_WSL2
 fi
 
 # tmux plugins
