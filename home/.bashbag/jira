@@ -10,10 +10,6 @@
 # export JIRA_PROJECTS="PROJECT OTHERPROJECT"
 #
 
-if [[ -z ${JIRA_URL} ]] ; then
-  echo "JIRA_URL not set!"
-fi
-
 function jira {
   browseurl="${JIRA_URL}/browse"
   # TODO: clevererer way to handle options, or just move to a real cli tool
