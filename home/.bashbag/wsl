@@ -12,6 +12,9 @@ if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   # Windows terminal
   alias wt=wt.exe
 
+  # edge
+  alias edge="echo '\"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe\" --enable-features=msForceNoRoundedCornerAndMargin' | cmd.exe"
+
   # Clipboard on WSL, removing the trailing newline
   alias clip="sed -z '$ s/\n$//' | clip.exe"
 
