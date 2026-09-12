@@ -1,5 +1,9 @@
 # Vagrant configs
 
+# Skip if no vagrant installed
+[[ -x $(type -p vagrant) ]]|| return 0
+
+# If in WSL
 if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 fi

@@ -245,6 +245,8 @@ function ssh-agent-tmux {
   if [[ -z ${SSH_AGENT_PID} ]] ; then
     printf "Starting ssh-agent: "
     eval $($(type -fP ssh-agent))
+  else
+    echo "ssh-agent already running: ${SSH_AGENT_PID}"
   fi
 
   # Add to tmux if we're in it

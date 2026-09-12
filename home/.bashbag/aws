@@ -1,5 +1,8 @@
 # .bashrc AWS functions
 
+# Skip if no AWS installed
+[[ -x $(type -p aws) ]]|| return 0
+
 export AWS_DEFAULT_OUTPUT=json
 
 # Add completion to aws
