@@ -101,6 +101,11 @@ function basepwd {
 }
 alias bpwd=basepwd
 
+# Relative path of a file to .
+function relpath {
+  realpath $* --relative-to .
+}
+
 #--------------------------------------+
 # Renames a tmux window to current dir name, or given string, or basename if it's a dir
 # tw => backpack
