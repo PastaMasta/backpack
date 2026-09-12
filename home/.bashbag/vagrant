@@ -7,3 +7,8 @@
 if [[ -n ${WSL_DISTRO_NAME} ]] ; then
   export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=1
 fi
+
+# Add all private keys to ssh-agent
+sshkeys="${sshkeys}
+.vagrant/machines/*/*/private_key
+"
