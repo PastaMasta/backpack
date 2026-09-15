@@ -124,6 +124,18 @@ function tw {
     tmux rename-window $(basepwd)
   fi
 }
+# Same behaviour, but for session name
+function ts {
+  if [[ -n $1 ]] ; then
+    if [[ -d $1 ]] ; then
+      tmux rename-session "$(basepwd $1)"
+    else
+      tmux rename-session "$1"
+    fi
+  else
+    tmux rename-session $(basepwd)
+  fi
+}
 
 #--------------------------------------+
 # AIX like pretty mount, because /bin/mount is pretty much unreadable
