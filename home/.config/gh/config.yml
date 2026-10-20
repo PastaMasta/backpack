@@ -1,0 +1,11 @@
+# Github CLI config
+version: 1
+git_protocol: https
+prompt: enabled
+aliases:
+    co: pr checkout
+    pr open: pr create
+    pr o: pr create
+    pro: pr create
+browser: cmd.exe /C start
+spinner: enabled
