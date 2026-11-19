@@ -4,8 +4,8 @@ git_protocol: https
 prompt: enabled
 aliases:
     co: pr checkout
-    pr open: pr create
-    pr o: pr create
-    pro: pr create
+    pr open: pr create -f
+    pr o: pr open
+    pro: pr open
 browser: cmd.exe /C start
 spinner: enabled
