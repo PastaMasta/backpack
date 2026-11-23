@@ -7,5 +7,7 @@ aliases:
     pr open: pr create -f
     pr o: pr open
     pro: pr open
+    pr check: pr checks
+    pr ck: pr checks
 browser: cmd.exe /C start
 spinner: enabled
